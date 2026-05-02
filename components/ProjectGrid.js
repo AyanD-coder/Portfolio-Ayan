@@ -43,7 +43,7 @@ function ProjectCard({ project, index }) {
   );
 }
 
-export function ProjectGrid({ projects, showAll = false }) {
+export function ProjectGrid({ projects, showAll = false, children }) {
   return (
     <section className="section alt" id="projects">
       <div className="container">
@@ -57,6 +57,7 @@ export function ProjectGrid({ projects, showAll = false }) {
             <ProjectCard project={project} index={index} key={project.slug} />
           ))}
         </div>
+        {children}
       </div>
     </section>
   );
