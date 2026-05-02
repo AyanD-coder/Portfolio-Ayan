@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
+  const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState(null);
 
   useEffect(() => {
+    setMounted(true);
     const rootTheme = document.documentElement.dataset.theme || "light";
     setTheme(rootTheme);
   }, []);
@@ -18,6 +20,15 @@ export function ThemeToggle() {
     localStorage.setItem("theme", nextTheme);
   }
 
+  // To avoid hydration mismatch, return a placeholder during SSR and initial client pass
+  if (!mounted) {
+    return (
+      <div className="theme-toggle" style={{ opacity: 0, pointerEvents: "none" }}>
+        <span className="theme-toggle-track" />
+      </div>
+    );
+  }
+
   const ariaLabel = theme
     ? `Switch to ${theme === "dark" ? "light" : "dark"} mode`
     : "Toggle theme";
@@ -25,11 +36,10 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      suppressHydrationWarning
       className="theme-toggle"
       onClick={toggleTheme}
       aria-label={ariaLabel}
-      aria-pressed={theme === "dark" || false}
+      aria-pressed={theme === "dark"}
     >
       <span className="theme-toggle-track" aria-hidden="true">
         <span className="theme-toggle-icon theme-toggle-icon-sun">
