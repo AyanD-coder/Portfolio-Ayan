@@ -49,7 +49,7 @@ export function ProjectGrid({ projects, showAll = false, children }) {
       <div className="container">
         <SectionHeading
           eyebrow="Projects"
-          title={showAll ? "A broader look at recent work." : "Selected work with measurable technical scope."}
+          title={showAll ? "A broader look at recent work." : "Building modern digital experiences through code, creativity, and problem-solving."}
           description="Each project emphasizes implementation details, not just visuals."
         />
         <div className="projects-grid">

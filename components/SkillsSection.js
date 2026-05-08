@@ -7,7 +7,7 @@ export function SkillsSection({ skills, compact = false }) {
         <SectionHeading
           eyebrow="Skills"
           title="Technical depth across software, tools, and applied electronics."
-          description="Grouped to make scanning easier for recruiters and hiring teams."
+          description="Full-spectrum technical skills spanning frontend, backend, tools, IoT and AI."
         />
         <div className={`skills-grid ${compact ? "compact" : ""}`}>
           {skills.map((group, index) => (

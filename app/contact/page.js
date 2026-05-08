@@ -13,7 +13,7 @@ export default function ContactPage() {
           <p className="eyebrow">Contact</p>
           <h1>Let&apos;s build something practical and thoughtful together.</h1>
           <p className="section-copy">
-            Reach out for entry-level software roles, frontend work, or electronics and IoT collaborations.
+            Reach out for software roles, frontend work or Web development and Ui design.
           </p>
         </div>
       </section>
