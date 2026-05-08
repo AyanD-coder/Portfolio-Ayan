@@ -59,6 +59,7 @@ export function Hero() {
               width={400}
               height={500}
               priority
+              fetchPriority="high"
               quality={90}
               className="profile-image"
             />

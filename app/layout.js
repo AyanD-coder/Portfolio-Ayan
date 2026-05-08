@@ -15,9 +15,9 @@ export const metadata = {
   },
   description: siteData.tagline,
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
   keywords: [
     "Ayan Dutta",
@@ -61,11 +61,14 @@ const personJsonLd = {
   sameAs: [siteData.contact.linkedin, siteData.contact.gitHub],
 };
 
+import { Component as SilkBackground } from "@/components/ui/silk-background-animation";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeInitializer />
+        <SilkBackground />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

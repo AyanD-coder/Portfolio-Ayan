@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, lazy } from 'react';
+
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
 export function InteractiveRobotSpline({ scene, className, style }) {
@@ -39,3 +40,4 @@ export function InteractiveRobotSpline({ scene, className, style }) {
     </Suspense>
   );
 }
+

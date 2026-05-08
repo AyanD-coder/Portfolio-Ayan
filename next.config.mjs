@@ -9,6 +9,7 @@ const nextConfig = {
     minimumCacheTTL: 60,
     qualities: [75, 85, 90, 95],
   },
+  transpilePackages: ['@splinetool/react-spline', '@splinetool/runtime'],
 };
 
 export default nextConfig;

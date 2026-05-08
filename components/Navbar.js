@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useState, useEffect } from "react";
@@ -33,7 +34,7 @@ export function Navbar() {
     <header className="navbar">
       <div className="container nav-inner">
         <Link href="/" className="brand" aria-label="Ayan Dutta home">
-          <span className="brand-mark">AD</span>
+          <Image src="/icon.png" alt="Ayan Dutta Logo" width={64} height={64} priority style={{ objectFit: "contain", borderRadius: "14px" }} />
           <span>Ayan Dutta</span>
         </Link>
         <nav className="nav-links" aria-label="Primary navigation">

@@ -37,7 +37,7 @@ export default async function ProjectsPage() {
           <p className="eyebrow">Projects</p>
           <h1>Projects that blend software fundamentals with hands-on systems thinking.</h1>
           <p className="section-copy">
-            This page is server-rendered on each request and pulls its content from a local mock API to match the requested SSR setup.
+            Exploring modern web development through responsive design, clean architecture, and real-world implementation.
           </p>
           <p className="meta-chip">Last server refresh: {payload.generatedAt}</p>
         </div>
