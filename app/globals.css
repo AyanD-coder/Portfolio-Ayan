@@ -637,7 +637,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
 
 .skills-grid.compact .skill-card {
   --card-accent: var(--accent-purple);
-  --card-bg: linear-gradient(135deg, #020617 0%, #002e78 100%);
+  --card-bg: linear-gradient(135deg, #001262 1%, #0d203d 100%);
   --card-border: #3b82f659;
   --card-title: #f8fafc;
   --card-text: #cbd5e1;
@@ -669,7 +669,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
 }
 
 .skills-grid.compact .skill-card:nth-child(3) {
-  --card-bg: linear-gradient(135deg, gray 0%, #0f172a 100%);
+  --card-bg: linear-gradient(135deg, #cfbaba 0%, #471e37 100%);
   --card-border: #2563eb40;
   --card-divider: #0ea5e933;
   --card-icon-bg: linear-gradient(135deg, #2563eb47, #020617b3);
@@ -677,7 +677,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
 }
 
 .skills-grid.compact .skill-card:nth-child(4) {
-  --card-bg: linear-gradient(135deg, #2977cb 0%, #0b2232 100%);
+  --card-bg: linear-gradient(135deg, #e49a9a 0%, #4a176b 100%);
   --card-border: #22d3ee59;
   --card-text: #cffafe;
   --card-divider: #22d3ee42;
@@ -686,9 +686,9 @@ html[data-theme="dark"] .theme-toggle-thumb {
 }
 
 .skills-grid.compact .skill-card:nth-child(5) {
-  --card-bg: linear-gradient(135deg, #666f77 0%, #abb7c6 100%);;
+  --card-bg: linear-gradient(135deg, #6e7c89 0%, #101215 100%);
   --card-border: #94a3b857;
-  --card-title: #0f172a;
+  --card-title: #f8fafe;
   --card-text: #334155;
   --card-divider: #3b82f62e;
   --card-icon-bg: linear-gradient(135deg, #dbeafef2, #ffffffb8);
@@ -763,24 +763,24 @@ html[data-theme="dark"] .theme-toggle-thumb {
 }
 
 .skills-grid.compact .skill-tag-item {
-  min-height: 1.8rem;
-  padding: 0.42rem 0.66rem;
-  border: 1px solid color-mix(in srgb, var(--card-icon-color) 24%, transparent);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06)),
+     min-height: 1.8rem;
+    padding: 0.42rem 0.66rem;
+    border: 1px solid 
+    color-mix(in srgb, var(--card-icon-color) 24%, transparent);
+    background: linear-gradient(284deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06)), 
     color-mix(in srgb, var(--card-icon-color) 14%, transparent);
-  color: var(--card-text);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 8px 18px rgba(2, 6, 23, 0.12);
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0;
-  white-space: nowrap;
+    color: #ffffff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 8px 18px rgba(2, 6, 23, 0.12);
+    font-size: 0.76rem;
+    font-weight: bold;
+    letter-spacing: 0;
+    white-space: nowrap;
 }
 
 .skills-grid.compact .skill-card:nth-child(5) .skill-tag-item {
   border-color: rgba(37, 99, 235, 0.18);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(219, 234, 254, 0.7)),
+    linear-gradient(130deg, rgba(255, 255, 255, 0.88), rgba(219, 234, 254, 0.7)),
     rgba(37, 99, 235, 0.08);
   color: #1e293b;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), 0 8px 18px rgba(15, 23, 42, 0.1);
