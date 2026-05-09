@@ -9,7 +9,7 @@ import { getStaticProjects } from "@/lib/project-service";
 import { siteData } from "@/lib/site-data";
 
 export default async function HomePage() {
-  const projects = getStaticProjects().slice(0, 3);
+  const projects = getStaticProjects().slice(0, 5);
 
   return (
     <main>

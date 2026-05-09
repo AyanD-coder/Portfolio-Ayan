@@ -606,7 +606,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
   border-radius: 999px;
   background: var(--surface-muted);
   padding: 0.6rem 0.9rem;
-  color: var(--text-soft);
+  color: var(--text-soft); 
 }
 
 .skills-grid,
@@ -614,6 +614,25 @@ html[data-theme="dark"] .theme-toggle-thumb {
 .achievement-grid,
 .contact-grid {
   grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.projects-shuffle-viewport {
+  --projects-visible-count: 1;
+  padding: 0.35rem 0 0.9rem;
+  margin: -0.35rem 0 -0.9rem;
+  overflow: hidden;
+}
+
+.projects-grid.projects-grid-shuffle {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, calc((100% - (var(--projects-visible-count) - 1) * 1rem) / var(--projects-visible-count)));
+  grid-template-columns: none;
+  width: 1865px;
+  align-items: stretch;
+}
+
+.projects-grid.projects-grid-shuffle .project-card {
+  min-width: 0;
 }
 
 .skill-card {
@@ -637,7 +656,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
 
 .skills-grid.compact .skill-card {
   --card-accent: var(--accent-purple);
-  --card-bg: linear-gradient(135deg, #001262 1%, #0d203d 100%);
+  --card-bg: linear-gradient(135deg, hsl(229, 100%, 19%) 1%, #0d203d 100%);
   --card-border: #3b82f659;
   --card-title: #f8fafc;
   --card-text: #cbd5e1;
@@ -678,7 +697,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
 
 .skills-grid.compact .skill-card:nth-child(4) {
   --card-bg: linear-gradient(135deg, #e49a9a 0%, #4a176b 100%);
-  --card-border: #22d3ee59;
+  --card-border: #c08fc5;
   --card-text: #cffafe;
   --card-divider: #22d3ee42;
   --card-icon-bg: linear-gradient(135deg, #22d3ee52, #3b82f629);
@@ -687,7 +706,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
 
 .skills-grid.compact .skill-card:nth-child(5) {
   --card-bg: linear-gradient(135deg, #6e7c89 0%, #101215 100%);
-  --card-border: #94a3b857;
+  --card-border: #ffffff57;
   --card-title: #f8fafe;
   --card-text: #334155;
   --card-divider: #3b82f62e;
@@ -697,7 +716,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
 
 .skills-grid.compact .skill-card:nth-child(6) {
   --card-bg: linear-gradient(135deg, #111827 0%, #1e293b 100%);
-  --card-border: #94a3b838;
+  --card-border: #ffffff38;
   --card-divider: #94a3b833;
   --card-icon-bg: linear-gradient(135deg, #60a5fa42, #0f172ab3);
   --card-icon-color: #bfdbfe;
@@ -839,12 +858,18 @@ html[data-theme="dark"] .theme-toggle-thumb {
 }
 
 .project-card.featured {
-  border-color: var(--primary);
-  box-shadow: 0 24px 80px rgba(59, 130, 246, 0.12);
+  border-color: #F59E0B;
+  box-shadow: 0 24px 80px rgba(245, 158, 11, 0.15);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.03)) !important;
+}
+
+:root.dark .project-card.featured,
+html[data-theme="dark"] .project-card.featured {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(245, 158, 11, 0.06)) !important;
 }
 
 .project-card.featured h3 {
-  color: var(--primary);
+  color: #F59E0B;
 }
 
 .project-top-row {
@@ -861,7 +886,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
   gap: 0.3rem;
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
-  background: var(--primary);
+  background: #F59E0B;
   color: var(--surface);
   font-size: 0.82rem;
   font-weight: 600;
@@ -1008,6 +1033,10 @@ html[data-theme="dark"] .theme-toggle-thumb {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .projects-shuffle-viewport {
+    --projects-visible-count: 2;
+  }
+
   .timeline-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1127,6 +1156,24 @@ html[data-theme="dark"] .theme-toggle-thumb {
   .projects-grid,
   .achievement-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .projects-shuffle-viewport {
+    --projects-visible-count: 3;
+  }
+
+  .projects-grid.projects-grid-shuffle .project-card {
+    padding: 1.15rem;
+  }
+
+  .projects-grid.projects-grid-shuffle .project-card h3 {
+    font-size: 1.12rem;
+  }
+
+  .projects-grid.projects-grid-shuffle .project-card p,
+  .projects-grid.projects-grid-shuffle .project-stack {
+    font-size: 0.88rem;
+    line-height: 1.55;
   }
 }
 
