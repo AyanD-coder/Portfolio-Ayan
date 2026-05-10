@@ -1336,7 +1336,7 @@ html[data-theme="dark"] .project-card.featured {
   }
 
   .projects-shuffle-viewport {
-    --projects-visible-count: 3;
+    --projects-visible-count: 2;
   }
 
   .timeline-grid {
@@ -1450,9 +1450,50 @@ html[data-theme="dark"] .project-card.featured {
   }
 }
 
+@media (min-width: 980px) {
+  .projects-shuffle-viewport {
+    --projects-visible-count: 3;
+  }
+}
+
 @media (min-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1.18fr 0.82fr;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3.2rem, 7vw, 4.8rem);
+  }
+
+  .hero-copy,
+  .hero-side,
+  .about-panel,
+  .project-card,
+  .timeline-card,
+  .achievement-card,
+  .contact-card,
+  .contact-form {
+    padding: 1.25rem;
+  }
+
+  .projects-grid.projects-grid-shuffle .project-card {
+    padding: 1.1rem;
+  }
+
+  .projects-grid.projects-grid-shuffle .project-card h3 {
+    font-size: 1.08rem;
+  }
+
+  .projects-grid.projects-grid-shuffle .project-card p,
+  .projects-grid.projects-grid-shuffle .project-stack {
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 1180px) {
+  .hero-copy h1 {
+    font-size: clamp(2.75rem, 10vw, 6rem);
   }
 
   .skills-grid.compact {
