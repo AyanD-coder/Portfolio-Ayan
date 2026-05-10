@@ -8,7 +8,7 @@ export function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true);
-    const rootTheme = document.documentElement.dataset.theme || "light";
+    const rootTheme = document.documentElement.dataset.theme || "dark";
     setTheme(rootTheme);
   }, []);
 
