@@ -9,11 +9,11 @@ const nextConfig = {
   poweredByHeader: false,
   outputFileTracingRoot: __dirname,
   images: {
-    formats: ['image/webp', 'image/avif'],
-    deviceSizes: [320, 420, 640, 768, 1024, 1280, 1536],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
-    qualities: [75, 85, 90, 95],
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [390, 640, 768, 1080, 1280],
+    imageSizes: [48, 96, 192, 384],
+    minimumCacheTTL: 31536000,
+    qualities: [75, 85],
   },
   transpilePackages: ['@splinetool/react-spline', '@splinetool/runtime'],
 };

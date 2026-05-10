@@ -44,7 +44,8 @@ html[data-theme="dark"] {
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
 }
 
-:root.dark body, html[data-theme="dark"] body {
+:root.dark body,
+html[data-theme="dark"] body {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
@@ -68,7 +69,8 @@ body {
   background: transparent;
   color: var(--text);
   font-family: Inter, Poppins, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  text-rendering: optimizeLegibility;
+  /* optimizeSpeed avoids expensive ligature lookups that can delay LCP paint */
+  text-rendering: optimizeSpeed;
 }
 
 a {
@@ -104,6 +106,15 @@ textarea {
 .section {
   padding: 4.5rem 0;
   overflow-x: clip;
+  /* Defer rendering cost of off-screen sections to free browser budget for LCP */
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
+}
+
+/* Hero is always visible — never defer it */
+.hero.section {
+  content-visibility: visible;
+  contain-intrinsic-size: unset;
 }
 
 .section.alt {
@@ -256,7 +267,8 @@ html[data-theme="dark"] .navbar {
 
 .mobile-menu-overlay {
   position: fixed;
-  top: 4.75rem; /* Height of navbar */
+  top: 4.75rem;
+  /* Height of navbar */
   left: 0;
   right: 0;
   bottom: 0;
@@ -318,6 +330,7 @@ html[data-theme="dark"] .navbar {
 }
 
 @media (min-width: 720px) {
+
   .mobile-menu-toggle,
   .mobile-menu-overlay {
     display: none;
@@ -355,11 +368,9 @@ html[data-theme="dark"] .navbar {
   height: 100%;
   display: block;
   border-radius: 999px;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--primary) 16%, var(--surface)),
-    color-mix(in srgb, var(--accent) 14%, var(--surface))
-  );
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--primary) 16%, var(--surface)),
+      color-mix(in srgb, var(--accent) 14%, var(--surface)));
 }
 
 .theme-toggle-icon {
@@ -581,14 +592,14 @@ html[data-theme="dark"] .about-panel::before {
     linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.03));
 }
 
-.glass-panel > *,
-.stat-card > *,
-.project-card > *,
-.timeline-card > *,
-.achievement-card > *,
-.contact-card > *,
-.contact-form > *,
-.about-panel > * {
+.glass-panel>*,
+.stat-card>*,
+.project-card>*,
+.timeline-card>*,
+.achievement-card>*,
+.contact-card>*,
+.contact-form>*,
+.about-panel>* {
   position: relative;
   z-index: 1;
 }
@@ -680,6 +691,30 @@ html[data-theme="dark"] .about-panel::before {
   border-radius: var(--radius);
   background: var(--surface-muted);
   aspect-ratio: 4/5;
+  /* Contain layout recalculation while image is loading */
+  contain: layout style;
+  /* Skeleton shimmer while image fetches */
+  background-image: linear-gradient(90deg,
+      var(--surface-muted) 0%,
+      color-mix(in srgb, var(--surface-muted) 60%, var(--border)) 50%,
+      var(--surface-muted) 100%);
+  background-size: 200% 100%;
+  animation: profile-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes profile-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Stop shimmer once image loads (image sits above background) */
+.profile-image-wrapper:has(.profile-image[data-loaded]) {
+  animation: none;
 }
 
 .profile-image {
@@ -741,7 +776,7 @@ html[data-theme="dark"] .about-panel::before {
   border-radius: 999px;
   background: var(--surface-muted);
   padding: 0.6rem 0.9rem;
-  color: var(--text-soft); 
+  color: var(--text-soft);
 }
 
 .project-card .tag {
@@ -1295,6 +1330,7 @@ html[data-theme="dark"] .project-card.featured {
     opacity: 0;
     transform: translateY(18px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1333,7 +1369,7 @@ html[data-theme="dark"] .project-card.featured {
   .skills-grid,
   .projects-grid,
   .achievement-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(1, 1fr));
   }
 
   .projects-shuffle-viewport {
@@ -1623,7 +1659,7 @@ html[data-theme="dark"] .project-card.featured {
 }
 
 /* Hide Spline Watermark */
-.spline-container > *:not(canvas) {
+.spline-container>*:not(canvas) {
   display: none !important;
 }
 

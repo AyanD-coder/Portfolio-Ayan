@@ -60,7 +60,8 @@ export function Hero() {
               height={500}
               priority
               fetchPriority="high"
-              quality={90}
+              quality={75}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 380px"
               className="profile-image"
             />
           </div>

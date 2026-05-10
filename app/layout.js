@@ -66,6 +66,17 @@ import { Component as SilkBackground } from "@/components/ui/silk-background-ani
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark" data-theme="dark" suppressHydrationWarning>
+      <head>
+        {/* Preload LCP profile image — fires before React renders */}
+        <link
+          rel="preload"
+          as="image"
+          href="/_next/image?url=%2Fprofile.jpg&w=640&q=75"
+          imageSrcSet="/_next/image?url=%2Fprofile.jpg&w=390&q=75 390w, /_next/image?url=%2Fprofile.jpg&w=640&q=75 640w, /_next/image?url=%2Fprofile.jpg&w=768&q=75 768w"
+          imageSizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 380px"
+          fetchPriority="high"
+        />
+      </head>
       <body>
         <ThemeInitializer />
         <SilkBackground />
