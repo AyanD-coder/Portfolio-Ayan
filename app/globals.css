@@ -1036,7 +1036,7 @@ html[data-theme="dark"] .skills-grid.compact .skill-card {
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 0.45rem;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .skill-tag-item {
@@ -1352,6 +1352,37 @@ html[data-theme="dark"] .project-card.featured {
 @media (prefers-reduced-motion: reduce) {
   .projects-grid.projects-grid-shuffle {
     animation: none;
+  }
+}
+
+/* ─── Mobile skill card fix (< 720px) ──────────────────────────── */
+@media (max-width: 719px) {
+  /* Let cards grow to fit all tags — no more clipping */
+  .skills-grid.compact .skill-card {
+    aspect-ratio: unset;
+    min-height: auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Switch tags from vertical column to horizontal wrapping row */
+  .skills-grid.compact .skill-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  /* Make tags slightly smaller on narrow screens so they wrap neatly */
+  .skills-grid.compact .skill-tag-item {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.55rem;
+    white-space: normal;
+  }
+
+  /* Allow the bottom tag-container paragraph to auto-grow */
+  .skills-grid.compact .skill-card p {
+    margin: 0.75rem 0 0;
+    overflow: visible;
   }
 }
 
