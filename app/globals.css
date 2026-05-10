@@ -1001,6 +1001,7 @@ html[data-theme="dark"] .skills-grid.compact .skill-card {
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 0.45rem;
+  flex-direction: column;
 }
 
 .skill-tag-item {
