@@ -6,7 +6,18 @@ import { siteData } from "@/lib/site-data";
 
 export const metadata = {
   title: "About",
-  description: "Learn more about Ayan Dutta, his background, strengths, and technical focus.",
+  description:
+    "Learn more about Ayan Dutta – B.Tech ECE graduate, software engineer intern, and web developer from Kolkata with experience in React, Node.js, IoT, and Python.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About | Ayan Dutta",
+    description:
+      "Learn more about Ayan Dutta – B.Tech ECE graduate, software engineer intern, and web developer from Kolkata.",
+    url: "/about",
+    images: ["/profile.jpg"],
+  },
 };
 
 export default function AboutPage() {

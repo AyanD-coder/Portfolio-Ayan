@@ -67,7 +67,7 @@ export function Hero() {
           </div>
           <div className="about-panel">
             <p className="eyebrow">Snapshot</p>
-            <p>B.Tech graduate in Electronics and Communication Engineering with hands-on experience in modern web development, DSA, SQL, and Arduino-based IoT systems. Currently working as a Software Engineer Intern at Yoforex, building responsive web applications, optimizing UI/UX, and exploring AI-assisted “vibe coding” workflows to accelerate development and creativity. Passionate about creating scalable digital experiences through clean code, modern technologies, and continuous learning.
+            <p>B.Tech graduate in Electronics and Communication Engineering with hands-on experience in modern web development, DSA, SQL, and Arduino-based IoT systems. Currently working as a Software Engineer Intern, building responsive web applications, optimizing UI/UX, and exploring AI-assisted “vibe coding” workflows to accelerate development and creativity. Passionate about creating scalable digital experiences through clean code, modern technologies, and continuous learning.
             </p>
             <div className="tag-list" style={{ marginTop: "1rem" }}>
               {siteData.skills.slice(0, 4).map((skill) => (

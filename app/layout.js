@@ -14,6 +14,9 @@ export const metadata = {
     template: `%s | ${siteData.name}`,
   },
   description: siteData.tagline,
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",
@@ -22,43 +25,129 @@ export const metadata = {
   keywords: [
     "Ayan Dutta",
     "portfolio",
-    "Next.js portfolio",
+    "Next.js developer portfolio",
+    "Software Engineer",
     "Electronics and Communication Engineering",
     "JavaScript developer",
+    "React developer",
+    "Node.js developer",
     "IoT projects",
+    "full-stack developer",
+    "web developer Kolkata",
+    "HRMS developer",
+    "frontend developer",
   ],
-  authors: [{ name: siteData.name }],
+  authors: [{ name: siteData.name, url: siteData.contact.linkedin }],
   creator: siteData.name,
+  publisher: siteData.name,
+  category: "technology",
   openGraph: {
     title: `${siteData.name} | Portfolio`,
     description: siteData.tagline,
-    type: "website",
+    type: "profile",
     url: siteUrl,
+    siteName: `${siteData.name} Portfolio`,
+    locale: "en_IN",
+    images: [
+      {
+        url: "/profile.jpg",
+        width: 400,
+        height: 500,
+        alt: `${siteData.name} – Software Developer`,
+      },
+    ],
+    firstName: "Ayan",
+    lastName: "Dutta",
+    username: "AyanD-coder",
+    gender: "male",
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteData.name} | Portfolio`,
     description: siteData.tagline,
+    creator: "@AyanD_coder",
+    images: ["/profile.jpg"],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Add your Google Search Console verification token here when available:
+    // google: "YOUR_GOOGLE_VERIFICATION_TOKEN",
+  },
+};
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0f" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  ],
+  width: "device-width",
+  initialScale: 1,
 };
 
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${siteUrl}/#person`,
   name: siteData.name,
+  givenName: "Ayan",
+  familyName: "Dutta",
   jobTitle: siteData.role,
   description: siteData.summary,
-  email: siteData.contact.email,
+  email: `mailto:${siteData.contact.email}`,
   telephone: siteData.contact.phone,
+  image: `${siteUrl}/profile.jpg`,
   address: {
     "@type": "PostalAddress",
-    addressLocality: siteData.contact.location,
+    addressLocality: "Kolkata",
+    addressRegion: "West Bengal",
     addressCountry: "IN",
   },
   knowsAbout: siteData.skills.flatMap((group) => group.items),
-  alumniOf: siteData.education[0]?.institution,
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Techno International New Town",
+  },
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "degree",
+    name: "B.Tech. Electronics and Communication Engineering",
+  },
   url: siteUrl,
-  sameAs: [siteData.contact.linkedin, siteData.contact.gitHub],
+  sameAs: [
+    siteData.contact.linkedin,
+    siteData.contact.gitHub,
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  name: `${siteData.name} Portfolio`,
+  description: siteData.tagline,
+  url: siteUrl,
+  author: {
+    "@id": `${siteUrl}/#person`,
+  },
+  inLanguage: "en-IN",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrl}/projects?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 import { Component as SilkBackground } from "@/components/ui/silk-background-animation";
@@ -83,6 +172,10 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <div className="site-shell">
           <Navbar />
