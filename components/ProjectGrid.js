@@ -12,7 +12,11 @@ function ProjectCard({ project, index }) {
         <div>
           <div className="project-top-row">
             <p className="eyebrow">{project.category}</p>
-            {project.featured ? <span className="featured-pill">Featured internship</span> : null}
+            {project.featured ? (
+              <span className="featured-pill">
+                {project.category.toLowerCase().includes("internship") ? "Featured internship" : "Featured project"}
+              </span>
+            ) : null}
           </div>
           <h3>{project.title}</h3>
         </div>
