@@ -56,6 +56,7 @@ export function Navbar() {
             Let&apos;s Talk
           </Link>
           <button 
+            type="button"
             className="mobile-menu-toggle" 
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -71,7 +72,11 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className={`mobile-menu-overlay ${isOpen ? "is-open" : ""}`} onClick={() => setIsOpen(false)}>
+      <div
+        className={`mobile-menu-overlay ${isOpen ? "is-open" : ""}`}
+        aria-hidden={!isOpen}
+        onClick={() => setIsOpen(false)}
+      >
         <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
           <nav className="mobile-menu-links">
             {navItems.map((item) => (

@@ -251,6 +251,23 @@ textarea:focus-visible {
   gap: 0.6rem;
 }
 
+.mobile-menu-toggle,
+.mobile-menu-overlay {
+  display: none;
+}
+
+.mobile-menu-toggle {
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
 .theme-toggle,
 .primary-button,
 .ghost-button,
@@ -1354,6 +1371,58 @@ html[data-theme="dark"] .theme-toggle-thumb {
 @media (max-width: 719px) {
   .nav-actions .ghost-button {
     display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: grid;
+  }
+
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 4.75rem 0 0;
+    z-index: 99;
+    display: block;
+    padding: 0.75rem;
+    background: color-mix(in srgb, var(--background) 72%, transparent);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    backdrop-filter: blur(18px);
+    transition: opacity 0.22s ease, visibility 0.22s ease;
+  }
+
+  .mobile-menu-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mobile-menu {
+    width: min(100%, 26rem);
+    margin-left: auto;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow);
+  }
+
+  .mobile-menu-links {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .mobile-menu-links > a:not(.primary-button) {
+    padding: 0.9rem 1rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-soft);
+    font-weight: 700;
+  }
+
+  .mobile-menu-links > a:hover,
+  .mobile-menu-links > a[aria-current="page"] {
+    background: var(--surface-muted);
+    color: var(--text);
   }
 
   .hero {
