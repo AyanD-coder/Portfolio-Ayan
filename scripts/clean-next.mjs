@@ -1,12 +1,17 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const nextDir = path.join(process.cwd(), ".next");
+const targetNames = process.argv.includes("--all")
+  ? [".next", ".next-dev"]
+  : [".next"];
 
 try {
-  await fs.rm(nextDir, { recursive: true, force: true });
-  console.log("Cleared .next build cache.");
+  for (const targetName of targetNames) {
+    const targetPath = path.join(process.cwd(), targetName);
+    await fs.rm(targetPath, { recursive: true, force: true });
+  }
+  console.log(`Cleared ${targetNames.join(" and ")} build cache.`);
 } catch (error) {
-  console.error("Failed to clear .next build cache.");
+  console.error("Failed to clear Next.js build cache.");
   throw error;
 }

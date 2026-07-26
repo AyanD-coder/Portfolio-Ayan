@@ -4,17 +4,14 @@ import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata = {
   title: "Projects",
-  description:
-    "Explore web, Python, and IoT projects by Ayan Dutta – including a full-stack HRMS, FinTech websites, IoT systems, and more.",
+  description: "Explore production, full-stack, AI content operations, desktop, automation, and IoT projects by Ayan Dutta.",
   alternates: {
     canonical: "/projects",
   },
   openGraph: {
     title: "Projects | Ayan Dutta",
-    description:
-      "Browse Ayan Dutta's portfolio of projects: full-stack web apps, internship SaaS products, IoT systems, and Python automation tools.",
+    description: "Explore production products, full-stack AI platforms, desktop tooling, automation, and IoT projects by Ayan Dutta.",
     url: "/projects",
-    images: ["/profile.jpg"],
   },
 };
 
@@ -41,33 +38,38 @@ async function getProjects() {
 export default async function ProjectsPage() {
   const payload = await getProjects();
   const siteUrl = getSiteUrl();
-
   const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Projects by Ayan Dutta",
-    description:
-      "A curated list of software and engineering projects built by Ayan Dutta.",
+    description: "Production, full-stack, desktop, automation, and IoT projects built or contributed to by Ayan Dutta.",
     url: `${siteUrl}/projects`,
     numberOfItems: payload.projects.length,
-    itemListElement: payload.projects.map((project, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "CreativeWork",
-        name: project.title,
-        description: project.description,
-        url: project.demoUrl || project.repoUrl || `${siteUrl}/projects`,
-        ...(project.demoUrl ? { sameAs: project.demoUrl } : {}),
-        keywords: project.techStack?.join(", "),
-        dateCreated: project.year,
-        author: {
-          "@type": "Person",
-          name: "Ayan Dutta",
-          url: siteUrl,
+    itemListElement: payload.projects.map((project, index) => {
+      const projectUrl =
+        project.links?.[0]?.url ||
+        project.demoUrl ||
+        project.repoUrl ||
+        `${siteUrl}/projects`;
+
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "CreativeWork",
+          name: project.title,
+          description: project.description,
+          url: projectUrl,
+          keywords: project.techStack?.join(", "),
+          dateCreated: project.year,
+          author: {
+            "@type": "Person",
+            name: "Ayan Dutta",
+            url: siteUrl,
+          },
         },
-      },
-    })),
+      };
+    }),
   };
 
   return (
@@ -79,15 +81,17 @@ export default async function ProjectsPage() {
       <section className="page-hero section">
         <div className="container">
           <p className="eyebrow">Projects</p>
-          <h1>Projects that blend software fundamentals with hands-on systems thinking.</h1>
+          <h1>Selected work built around real users and technical constraints.</h1>
           <p className="section-copy">
-            Exploring modern web development through responsive design, clean architecture, and real-world implementation.
+            Production product contributions, full-stack AI platforms, desktop tooling, automation, and IoT systems—each presented with the implementation details that matter.
           </p>
-          <p className="meta-chip">Last server refresh: {payload.generatedAt}</p>
+          <div className="page-hero-meta">
+            <span className="meta-chip">{payload.projects.length} projects</span>
+            <span className="meta-chip">Web · APIs · AI · Desktop · IoT</span>
+          </div>
         </div>
       </section>
       <ProjectGrid projects={payload.projects} showAll />
     </main>
   );
 }
-

@@ -2,15 +2,14 @@ import { ContactSection } from "@/components/ContactSection";
 
 export const metadata = {
   title: "Contact",
-  description: "Get in touch with Ayan Dutta for software, web, or IoT opportunities.",
+  description: "Contact Ayan Dutta about full-stack, frontend, and software engineering opportunities.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
     title: "Contact | Ayan Dutta",
-    description: "Reach out to Ayan Dutta for software roles, frontend work, web development, and UI design collaborations.",
+    description: "Contact Ayan Dutta about full-stack, frontend, and software engineering opportunities.",
     url: "/contact",
-    images: ["/profile.jpg"],
   },
 };
 
@@ -20,9 +19,9 @@ export default function ContactPage() {
       <section className="page-hero section">
         <div className="container">
           <p className="eyebrow">Contact</p>
-          <h1>Let&apos;s build something practical and thoughtful together.</h1>
+          <h1>Let&apos;s turn the next product challenge into working software.</h1>
           <p className="section-copy">
-            Reach out for software roles, frontend work or Web development and Ui design.
+            Reach out for full-stack, frontend, or software engineering opportunities where thoughtful implementation and fast learning are valued.
           </p>
         </div>
       </section>

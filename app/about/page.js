@@ -1,22 +1,20 @@
 import { AboutPreview } from "@/components/AboutPreview";
 import { SkillsSection } from "@/components/SkillsSection";
+import { AIWorkflowSection } from "@/components/AIWorkflowSection";
 import { TimelineSection } from "@/components/TimelineSection";
 import { AchievementsSection } from "@/components/AchievementsSection";
 import { siteData } from "@/lib/site-data";
 
 export const metadata = {
   title: "About",
-  description:
-    "Learn more about Ayan Dutta – B.Tech ECE graduate, software engineer intern, and web developer from Kolkata with experience in React, Node.js, IoT, and Python.",
+  description: "Learn how Ayan Dutta combines full-stack development, product thinking, AI content operations, and AI-assisted engineering.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
     title: "About | Ayan Dutta",
-    description:
-      "Learn more about Ayan Dutta – B.Tech ECE graduate, software engineer intern, and web developer from Kolkata.",
+    description: "Learn how Ayan Dutta combines full-stack development, product thinking, AI content operations, and AI-assisted engineering.",
     url: "/about",
-    images: ["/profile.jpg"],
   },
 };
 
@@ -26,7 +24,7 @@ export default function AboutPage() {
       <section className="page-hero section">
         <div className="container">
           <p className="eyebrow">About</p>
-          <h1>Engineering-first thinking with a builder&apos;s mindset.</h1>
+          <h1>Full-stack execution shaped by systems thinking.</h1>
           <p className="section-copy">
             {siteData.summary}
           </p>
@@ -35,7 +33,8 @@ export default function AboutPage() {
       <AboutPreview summary={siteData.summary} strengths={siteData.strengths} detailed showImage={true} />
       <TimelineSection education={siteData.education} />
       <SkillsSection skills={siteData.skills} />
-      <AchievementsSection achievements={siteData.achievements} certifications={siteData.certifications} />
+      <AIWorkflowSection workflow={siteData.aiWorkflow} />
+      <AchievementsSection achievements={siteData.achievements} />
     </main>
   );
 }

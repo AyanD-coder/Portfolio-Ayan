@@ -2,7 +2,7 @@
   "name": "ayan-dutta-portfolio",
   "private": true,
   "scripts": {
-    "clean": "node scripts/clean-next.mjs",
+    "clean": "node scripts/clean-next.mjs --all",
     "dev": "next dev",
     "prebuild": "node scripts/clean-next.mjs",
     "build": "next build",

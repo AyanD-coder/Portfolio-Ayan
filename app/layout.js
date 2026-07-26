@@ -6,6 +6,7 @@ import { siteData } from "@/lib/site-data";
 import { getSiteUrl } from "@/lib/site-url";
 
 const siteUrl = getSiteUrl();
+const socialImageUrl = new URL("/og-v2.png", siteUrl).toString();
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -18,24 +19,29 @@ export const metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
-    apple: "/icon.png",
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
   },
   keywords: [
     "Ayan Dutta",
-    "portfolio",
-    "Next.js developer portfolio",
-    "Software Engineer",
-    "Electronics and Communication Engineering",
-    "JavaScript developer",
-    "React developer",
-    "Node.js developer",
-    "IoT projects",
     "full-stack developer",
-    "web developer Kolkata",
-    "HRMS developer",
     "frontend developer",
+    "software engineer",
+    "React developer",
+    "Next.js developer",
+    "FastAPI developer",
+    "Electron developer",
+    "AI content operations",
+    "SEO AEO GEO",
+    "grounded AI research",
+    "multi-provider AI",
+    "AI-assisted development",
+    "OpenAI Codex",
+    "portfolio",
+    "Next.js portfolio",
+    "Electronics and Communication Engineering",
+    "IoT projects",
   ],
   authors: [{ name: siteData.name, url: siteData.contact.linkedin }],
   creator: siteData.name,
@@ -44,29 +50,24 @@ export const metadata = {
   openGraph: {
     title: `${siteData.name} | Portfolio`,
     description: siteData.tagline,
-    type: "profile",
+    type: "website",
     url: siteUrl,
     siteName: `${siteData.name} Portfolio`,
     locale: "en_IN",
     images: [
       {
-        url: "/profile.jpg",
-        width: 400,
-        height: 500,
-        alt: `${siteData.name} – Software Developer`,
+        url: socialImageUrl,
+        width: 1732,
+        height: 908,
+        alt: "Ayan Dutta full-stack developer portfolio featuring EmpTrakr, Blog Forge, web, desktop, APIs, and AI-assisted engineering",
       },
     ],
-    firstName: "Ayan",
-    lastName: "Dutta",
-    username: "AyanD-coder",
-    gender: "male",
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteData.name} | Portfolio`,
     description: siteData.tagline,
-    creator: "@AyanD_coder",
-    images: ["/profile.jpg"],
+    images: [socialImageUrl],
   },
   robots: {
     index: true,
@@ -79,16 +80,12 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    // Add your Google Search Console verification token here when available:
-    // google: "YOUR_GOOGLE_VERIFICATION_TOKEN",
-  },
 };
 
 export const viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0f" },
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#05070b" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f6f8" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -103,7 +100,7 @@ const personJsonLd = {
   familyName: "Dutta",
   jobTitle: siteData.role,
   description: siteData.summary,
-  email: `mailto:${siteData.contact.email}`,
+  email: siteData.contact.email,
   telephone: siteData.contact.phone,
   image: `${siteUrl}/profile.jpg`,
   address: {
@@ -115,7 +112,7 @@ const personJsonLd = {
   knowsAbout: siteData.skills.flatMap((group) => group.items),
   alumniOf: {
     "@type": "CollegeOrUniversity",
-    name: "Techno International New Town",
+    name: siteData.education[1]?.institution,
   },
   hasCredential: {
     "@type": "EducationalOccupationalCredential",
@@ -123,10 +120,7 @@ const personJsonLd = {
     name: "B.Tech. Electronics and Communication Engineering",
   },
   url: siteUrl,
-  sameAs: [
-    siteData.contact.linkedin,
-    siteData.contact.gitHub,
-  ],
+  sameAs: [siteData.contact.linkedin, siteData.contact.gitHub],
 };
 
 const websiteJsonLd = {
@@ -140,35 +134,13 @@ const websiteJsonLd = {
     "@id": `${siteUrl}/#person`,
   },
   inLanguage: "en-IN",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${siteUrl}/projects?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
-
-import { Component as SilkBackground } from "@/components/ui/silk-background-animation";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark" data-theme="dark" suppressHydrationWarning>
-      <head>
-        {/* Preload LCP profile image — fires before React renders */}
-        <link
-          rel="preload"
-          as="image"
-          href="/_next/image?url=%2Fprofile.jpg&w=640&q=75"
-          imageSrcSet="/_next/image?url=%2Fprofile.jpg&w=390&q=75 390w, /_next/image?url=%2Fprofile.jpg&w=640&q=75 640w, /_next/image?url=%2Fprofile.jpg&w=768&q=75 768w"
-          imageSizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 380px"
-          fetchPriority="high"
-        />
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeInitializer />
-        <SilkBackground />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

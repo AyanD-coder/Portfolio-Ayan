@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
+  { href: "/projects", label: "Work" },
 ];
 
 export function Navbar() {
@@ -53,7 +53,7 @@ export function Navbar() {
         <div className="nav-actions">
           <ThemeToggle />
           <Link href="/contact" className="ghost-button">
-            Contact
+            Let&apos;s Talk
           </Link>
           <button 
             className="mobile-menu-toggle" 

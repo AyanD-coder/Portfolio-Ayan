@@ -6,27 +6,47 @@ export function AboutPreview({ summary, strengths, detailed = false, showImage =
     <section className="section alt" id="about">
       <div className="container">
         <SectionHeading
-          eyebrow="About Me"
-          title="Strong fundamentals, practical execution, and a habit of building useful things."
-          description="A portfolio shaped by hands-on projects across web interfaces, Python automation, and embedded systems."
+          eyebrow="About"
+          title="Engineering fundamentals with a product builder’s mindset."
+          description="A practical path from electronics and systems thinking to production-minded software development."
         />
-        <div className="about-grid">
-          <div className="about-panel fade-up fade-delay-1">
+        <div className={`about-grid${showImage ? " about-grid-with-image" : ""}`}>
+          {showImage ? (
+            <div className="about-profile-card fade-up">
+              <div className="about-image-wrapper">
+                <Image
+                  src="/profile.jpg"
+                  alt="Ayan Dutta"
+                  width={500}
+                  height={625}
+                  quality={90}
+                  className="about-image"
+                />
+              </div>
+              <div className="about-profile-meta">
+                <strong>Ayan Dutta</strong>
+                <span>Full-Stack Developer · Kolkata</span>
+              </div>
+            </div>
+          ) : null}
+          <div className="about-panel about-story fade-up fade-delay-1">
+            <p className="eyebrow">My approach</p>
+            <h3>Build clearly. Validate carefully. Keep improving.</h3>
             <p>{summary}</p>
             {detailed ? (
-              <p style={{ marginTop: "1rem" }}>
-                The strongest thread across these projects is problem-solving with constraints: making interfaces responsive, making automation practical, and making hardware systems safe and readable.
+              <p className="about-detail">
+                My electronics background adds systems thinking to software work: understanding constraints, tracing behavior, and turning technical decisions into dependable user experiences.
               </p>
             ) : null}
           </div>
-         
-          <div className="about-panel fade-up fade-delay-2">
-            <p className="eyebrow">Strengths</p>
+          <div className="about-panel about-strengths fade-up fade-delay-2">
+            <p className="eyebrow">What I bring</p>
             <div className="strength-list">
-              {strengths.map((strength) => (
-                <span className="strength-item" key={strength}>
-                  {strength}
-                </span>
+              {strengths.map((strength, index) => (
+                <div className="strength-item" key={strength}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{strength}</strong>
+                </div>
               ))}
             </div>
           </div>

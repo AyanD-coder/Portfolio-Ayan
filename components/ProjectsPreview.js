@@ -3,12 +3,13 @@ import { ProjectGrid } from "@/components/ProjectGrid";
 
 export function ProjectsPreview({ projects }) {
   return (
-    <ProjectGrid projects={projects} shuffle>
-      <div style={{ marginTop: "3.5rem", display: "flex", justifyContent: "center" }}>
+    <>
+      <ProjectGrid projects={projects} />
+      <div className="container projects-preview-action">
         <Link href="/projects" className="ghost-button">
           View all projects
         </Link>
       </div>
-    </ProjectGrid>
+    </>
   );
 }
