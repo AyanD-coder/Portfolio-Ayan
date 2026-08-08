@@ -1,7 +1,9 @@
 import "./globals.css";
+import "./editorial.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
+import { MotionInitializer } from "@/components/MotionInitializer";
 import { siteData } from "@/lib/site-data";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -59,7 +61,7 @@ export const metadata = {
         url: socialImageUrl,
         width: 1732,
         height: 908,
-        alt: "Ayan Dutta full-stack developer portfolio featuring EmpTrakr, Blog Forge, web, desktop, APIs, and AI-assisted engineering",
+        alt: "Ayan Dutta full-stack developer portfolio featuring RTX5, EmpTrakr, Blog Forge, web, desktop, APIs, and AI-assisted engineering",
       },
     ],
   },
@@ -83,10 +85,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#05070b" },
-    { media: "(prefers-color-scheme: light)", color: "#f4f6f8" },
-  ],
+  colorScheme: "light dark",
   width: "device-width",
   initialScale: 1,
 };
@@ -139,8 +138,13 @@ const websiteJsonLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <head>
+        <meta id="theme-color" name="theme-color" content="#ffffff" />
         <ThemeInitializer />
+        <link rel="preconnect" href="https://prod.spline.design" crossOrigin="anonymous" />
+      </head>
+      <body>
+        <MotionInitializer />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

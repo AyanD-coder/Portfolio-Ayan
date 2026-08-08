@@ -2,31 +2,55 @@
 
 import { useEffect, useState } from "react";
 
+function applyTheme(theme) {
+  const root = document.documentElement;
+  root.dataset.theme = theme;
+  root.classList.toggle("dark", theme === "dark");
+  root.style.colorScheme = theme;
+  document
+    .getElementById("theme-color")
+    ?.setAttribute("content", theme === "dark" ? "#070a10" : "#ffffff");
+}
+
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState(null);
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    setMounted(true);
-    const rootTheme = document.documentElement.dataset.theme || "dark";
+    const rootTheme = document.documentElement.dataset.theme || "light";
     setTheme(rootTheme);
+
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemThemeChange = (event) => {
+      let storedTheme = null;
+
+      try {
+        storedTheme = localStorage.getItem("theme");
+      } catch (error) {
+        storedTheme = null;
+      }
+
+      if (storedTheme !== "light" && storedTheme !== "dark") {
+        const nextTheme = event.matches ? "dark" : "light";
+        applyTheme(nextTheme);
+        setTheme(nextTheme);
+      }
+    };
+
+    systemTheme.addEventListener("change", handleSystemThemeChange);
+    return () => systemTheme.removeEventListener("change", handleSystemThemeChange);
   }, []);
 
   function toggleTheme() {
-    const nextTheme = theme === "dark" ? "light" : "dark";
+    const activeTheme = document.documentElement.dataset.theme || theme;
+    const nextTheme = activeTheme === "dark" ? "light" : "dark";
     setTheme(nextTheme);
-    document.documentElement.dataset.theme = nextTheme;
-    document.documentElement.classList.toggle("dark", nextTheme === "dark");
-    localStorage.setItem("theme", nextTheme);
-  }
+    applyTheme(nextTheme);
 
-  // To avoid hydration mismatch, return a placeholder during SSR and initial client pass
-  if (!mounted) {
-    return (
-      <div className="theme-toggle" style={{ opacity: 0, pointerEvents: "none" }}>
-        <span className="theme-toggle-track" />
-      </div>
-    );
+    try {
+      localStorage.setItem("theme", nextTheme);
+    } catch (error) {
+      // The theme still applies for this session when storage is unavailable.
+    }
   }
 
   const ariaLabel = theme
@@ -40,6 +64,7 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={ariaLabel}
       aria-pressed={theme === "dark"}
+      suppressHydrationWarning
     >
       <span className="theme-toggle-track" aria-hidden="true">
         <span className="theme-toggle-icon theme-toggle-icon-sun">

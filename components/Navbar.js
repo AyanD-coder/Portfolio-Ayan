@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -15,28 +15,69 @@ const navItems = [
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
+  const menuToggleRef = useRef(null);
 
-  // Prevent scrolling when menu is open
   useEffect(() => {
-    document.body.style.overflowX = "hidden";
+    if (!isOpen) return undefined;
 
-    if (isOpen) {
-      document.body.style.overflowY = "hidden";
-    } else {
-      document.body.style.overflowY = "";
+    const previousOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement;
+    const menu = menuRef.current;
+    const focusableElements = menu?.querySelectorAll("a[href], button:not([disabled])") || [];
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
+
+    document.body.style.overflow = "hidden";
+    firstFocusable?.focus();
+
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setIsOpen(false);
+        window.requestAnimationFrame(() => menuToggleRef.current?.focus());
+        return;
+      }
+
+      if (event.key !== "Tab" || focusableElements.length === 0) return;
+
+      if (event.shiftKey && document.activeElement === firstFocusable) {
+        event.preventDefault();
+        lastFocusable.focus();
+      } else if (!event.shiftKey && document.activeElement === lastFocusable) {
+        event.preventDefault();
+        firstFocusable.focus();
+      }
     }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+      if (previousFocus instanceof HTMLElement) previousFocus.focus();
+    };
   }, [isOpen]);
 
-  // Close menu on navigation
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    const desktopQuery = window.matchMedia("(min-width: 720px)");
+    const closeOnDesktop = (event) => {
+      if (event.matches) setIsOpen(false);
+    };
+
+    desktopQuery.addEventListener("change", closeOnDesktop);
+    return () => desktopQuery.removeEventListener("change", closeOnDesktop);
+  }, []);
 
   return (
     <header className="navbar">
       <div className="container nav-inner">
         <Link href="/" className="brand" aria-label="Ayan Dutta home">
-          <Image src="/icon.png" alt="Ayan Dutta Logo" width={64} height={64} priority style={{ objectFit: "contain", borderRadius: "14px" }} />
+          <Image className="brand-logo" src="/icon.png" alt="Ayan Dutta Logo" width={64} height={64} priority />
           <span>Ayan Dutta</span>
         </Link>
         <nav className="nav-links" aria-label="Primary navigation">
@@ -56,11 +97,13 @@ export function Navbar() {
             Let&apos;s Talk
           </Link>
           <button 
+            ref={menuToggleRef}
             type="button"
             className="mobile-menu-toggle" 
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
             suppressHydrationWarning
           >
             {isOpen ? (
@@ -73,12 +116,21 @@ export function Navbar() {
       </div>
 
       <div
-        className={`mobile-menu-overlay ${isOpen ? "is-open" : ""}`}
+        className={`mobile-menu-overlay${isOpen ? " is-open" : ""}`}
         aria-hidden={!isOpen}
         onClick={() => setIsOpen(false)}
+        role="presentation"
       >
-        <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
-          <nav className="mobile-menu-links">
+        <div
+          ref={menuRef}
+          id="mobile-navigation"
+          className="mobile-menu"
+          role="dialog"
+          aria-modal={isOpen ? "true" : undefined}
+          aria-label="Mobile navigation"
+          onClick={(event) => event.stopPropagation()}
+        >
+          <nav className="mobile-menu-links" aria-label="Mobile navigation links">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -88,7 +140,7 @@ export function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <Link href="/contact" className="primary-button" style={{ marginTop: "1rem" }}>
+            <Link href="/contact" className="primary-button mobile-contact-link">
               Contact Me
             </Link>
           </nav>

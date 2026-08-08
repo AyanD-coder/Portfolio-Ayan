@@ -26,7 +26,7 @@ function ProjectLinks({ project }) {
     return (
       <div className="project-links">
         <span className="chip-link" aria-disabled="true">
-          Demo link available on request
+          Project details available on request
         </span>
       </div>
     );
@@ -116,10 +116,29 @@ function SpotlightProjectCard({ project, index }) {
 }
 
 function StandardProjectCard({ project, index }) {
-  const badge = project.badge || (project.featured ? "Featured internship" : null);
+  const badge = project.badge || (project.featured ? "Featured project" : null);
+  const hasMedia = Boolean(project.image?.src);
 
   return (
-    <article className={`project-card fade-up${project.featured ? " featured" : ""}`} style={{ animationDelay: `${index * 0.08}s` }}>
+    <article
+      className={`project-card fade-up${project.featured ? " featured" : ""}${hasMedia ? " project-card-with-media" : ""}`}
+      style={{ animationDelay: `${index * 0.08}s` }}
+    >
+      {hasMedia ? (
+        <div className="project-row-media">
+          <Image
+            src={project.image.src}
+            alt={project.image.alt}
+            width={1600}
+            height={1000}
+            sizes="(min-width: 900px) 18vw, (min-width: 720px) 70vw, calc(100vw - 3rem)"
+            className="project-row-media-image"
+          />
+          {project.image.kind === "concept" ? (
+            <span className="project-row-media-label">Concept visual</span>
+          ) : null}
+        </div>
+      ) : null}
       <div className="project-top">
         <div>
             <div className="project-top-row">

@@ -16,7 +16,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <main className="inner-page">
-      <section className="page-hero section">
+      <section className="page-hero section page-hero-artwork page-hero-artwork-contact">
         <div className="container">
           <p className="eyebrow">Contact</p>
           <h1>Let&apos;s turn the next product challenge into working software.</h1>

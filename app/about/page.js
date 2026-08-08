@@ -21,7 +21,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <main className="inner-page">
-      <section className="page-hero section">
+      <section className="page-hero section page-hero-artwork page-hero-artwork-about">
         <div className="container">
           <p className="eyebrow">About</p>
           <h1>Full-stack execution shaped by systems thinking.</h1>

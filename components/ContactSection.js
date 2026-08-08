@@ -18,7 +18,7 @@ export function ContactSection({ detailed = false }) {
             </div>
             <h3>Ready to contribute to a product-focused engineering team.</h3>
             <p>
-              Available for {siteData.availability.workMode.toLowerCase()} roles. I bring production internship experience, full-stack project work, and an AI-assisted workflow grounded in validation.
+              Available for {siteData.availability.workMode.toLowerCase()} roles. I bring production software engineering experience from a permanent role, full-stack product work, and an AI-assisted workflow grounded in validation.
             </p>
             <div className="contact-role-list">
               {siteData.targetRoles.map((role) => (

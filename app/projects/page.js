@@ -78,7 +78,7 @@ export default async function ProjectsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
-      <section className="page-hero section">
+      <section className="page-hero section page-hero-artwork page-hero-artwork-projects">
         <div className="container">
           <p className="eyebrow">Projects</p>
           <h1>Selected work built around real users and technical constraints.</h1>

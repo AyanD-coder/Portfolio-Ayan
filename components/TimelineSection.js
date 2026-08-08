@@ -7,7 +7,7 @@ export function TimelineSection({ education }) {
         <SectionHeading
           eyebrow="Experience"
           title="Production experience backed by engineering foundations."
-          description="A concise timeline of internship delivery, technical education, and the path into software development."
+          description="A concise timeline of production delivery, professional experience, and technical education."
         />
         <div className="timeline-grid">
           {education.map((item, index) => (

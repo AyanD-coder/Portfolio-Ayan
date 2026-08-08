@@ -45,8 +45,8 @@ export function Hero() {
 
         <div className="hero-visual fade-up fade-delay-1">
           <div className="hero-canvas-positioner">
-            <div style={{ marginTop: "auto", paddingTop: "2rem", height: "400px", position: "relative", borderRadius: "12px", opacity: 0.9, overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: "2rem", left: 0, right: 0, bottom: "-75px" }}>
+            <div className="hero-canvas-shell">
+              <div className="hero-canvas-stage">
                 <InteractiveRobotSpline
                   scene="https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode"
                   style={{ width: "100%", height: "100%" }}

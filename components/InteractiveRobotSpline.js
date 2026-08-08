@@ -1,39 +1,35 @@
 'use client';
 
+import Image from 'next/image';
 import { Suspense, lazy } from 'react';
+
+function HeroLoadingPoster() {
+  return (
+    <div className="spline-loading-poster" aria-hidden="true">
+      <Image
+        src="/site-visuals/fullstack-product-system.webp"
+        alt=""
+        fill
+        priority
+        sizes="(min-width: 900px) 373px, min(100vw - 3rem, 373px)"
+        className="spline-loading-poster-image"
+      />
+    </div>
+  );
+}
+
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
 export function InteractiveRobotSpline({ scene, className, style }) {
   return (
-    <Suspense
-      fallback={
-        <div 
-          className={className} 
-          style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            backgroundColor: 'transparent',
-            minHeight: '200px',
-            width: '100%',
-            height: '100%',
-            ...style
-          }}
-        >
-          <div style={{ width: '24px', height: '24px', border: '3px solid rgba(200,200,200,0.3)', borderRadius: '50%', borderTopColor: 'var(--primary)', animation: 'spin 1s ease-in-out infinite' }} />
-          <style>{`
-            @keyframes spin {
-              to { transform: rotate(360deg); }
-            }
-          `}</style>
-        </div>
-      }
-    >
+    <Suspense fallback={<HeroLoadingPoster />}>
       <Spline
         scene={scene}
         className={`spline-container ${className || ""}`}
-        style={style}
-      />
+        style={{ position: 'relative', ...style }}
+      >
+        <HeroLoadingPoster />
+      </Spline>
     </Suspense>
   );
 }
