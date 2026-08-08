@@ -19,7 +19,7 @@ export function Hero() {
             <Link className="primary-button" href="/projects">
               View Projects
             </Link>
-            <a className="ghost-button" href="/ayan-dutta-cv-2026.pdf" download>
+            <a className="ghost-button" href={siteData.cvPath} download>
               Download CV
             </a>
             <Link className="text-link" href="/contact">

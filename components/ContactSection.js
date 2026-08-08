@@ -42,7 +42,7 @@ export function ContactSection({ detailed = false }) {
               <span>GitHub</span>
               <strong>Code and repositories</strong>
             </a>
-            <a className="contact-link-row" href="/ayan-dutta-cv-2026.pdf" download>
+            <a className="contact-link-row" href={siteData.cvPath} download>
               <span>Resume</span>
               <strong>Download CV</strong>
             </a>
