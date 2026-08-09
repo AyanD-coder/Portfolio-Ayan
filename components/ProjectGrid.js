@@ -131,7 +131,7 @@ function StandardProjectCard({ project, index }) {
             alt={project.image.alt}
             width={1600}
             height={1000}
-            sizes="(min-width: 900px) 18vw, (min-width: 720px) 70vw, calc(100vw - 3rem)"
+            sizes="(min-width: 900px) 18vw, calc(100vw - 3rem)"
             className="project-row-media-image"
           />
           {project.image.kind === "concept" ? (

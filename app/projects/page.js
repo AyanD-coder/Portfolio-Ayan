@@ -1,5 +1,5 @@
-import { headers } from "next/headers";
 import { ProjectGrid } from "@/components/ProjectGrid";
+import { getStaticProjects } from "@/lib/project-service";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata = {
@@ -15,28 +15,8 @@ export const metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
-
-async function getProjects() {
-  const headerStore = await headers();
-  const forwardedProto = headerStore.get("x-forwarded-proto");
-  const host = headerStore.get("host");
-  const baseUrl = host
-    ? `${forwardedProto || "http"}://${host}`
-    : getSiteUrl();
-  const response = await fetch(`${baseUrl}/api/projects`, {
-    cache: "no-store",
-  });
-
-  if (!response.ok) {
-    throw new Error("Unable to load project data.");
-  }
-
-  return response.json();
-}
-
-export default async function ProjectsPage() {
-  const payload = await getProjects();
+export default function ProjectsPage() {
+  const projects = getStaticProjects();
   const siteUrl = getSiteUrl();
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -44,8 +24,8 @@ export default async function ProjectsPage() {
     name: "Projects by Ayan Dutta",
     description: "Production, full-stack, desktop, automation, and IoT projects built or contributed to by Ayan Dutta.",
     url: `${siteUrl}/projects`,
-    numberOfItems: payload.projects.length,
-    itemListElement: payload.projects.map((project, index) => {
+    numberOfItems: projects.length,
+    itemListElement: projects.map((project, index) => {
       const projectUrl =
         project.links?.[0]?.url ||
         project.demoUrl ||
@@ -86,12 +66,12 @@ export default async function ProjectsPage() {
             Production product contributions, full-stack AI platforms, desktop tooling, automation, and IoT systems—each presented with the implementation details that matter.
           </p>
           <div className="page-hero-meta">
-            <span className="meta-chip">{payload.projects.length} projects</span>
+            <span className="meta-chip">{projects.length} projects</span>
             <span className="meta-chip">Web · APIs · AI · Desktop · IoT</span>
           </div>
         </div>
       </section>
-      <ProjectGrid projects={payload.projects} showAll />
+      <ProjectGrid projects={projects} showAll />
     </main>
   );
 }

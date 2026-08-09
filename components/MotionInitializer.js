@@ -19,15 +19,6 @@ export function MotionInitializer() {
       return undefined;
     }
 
-    const revealBoundary = window.innerHeight * 0.94;
-    const positions = elements.map((element) => element.getBoundingClientRect().top);
-
-    elements.forEach((element, index) => {
-      const inlineDelay = element.style.animationDelay;
-      if (inlineDelay) element.style.setProperty("--reveal-delay", inlineDelay);
-      element.classList.toggle("is-visible", positions[index] <= revealBoundary);
-    });
-
     root.classList.add("motion-ready");
 
     const observer = new IntersectionObserver(
@@ -42,7 +33,9 @@ export function MotionInitializer() {
     );
 
     elements.forEach((element) => {
-      if (!element.classList.contains("is-visible")) observer.observe(element);
+      const inlineDelay = element.style.animationDelay;
+      if (inlineDelay) element.style.setProperty("--reveal-delay", inlineDelay);
+      observer.observe(element);
     });
 
     return () => {

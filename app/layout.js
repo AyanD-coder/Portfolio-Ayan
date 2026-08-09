@@ -141,7 +141,6 @@ export default function RootLayout({ children }) {
       <head>
         <meta id="theme-color" name="theme-color" content="#ffffff" />
         <ThemeInitializer />
-        <link rel="preconnect" href="https://prod.spline.design" crossOrigin="anonymous" />
       </head>
       <body>
         <MotionInitializer />
