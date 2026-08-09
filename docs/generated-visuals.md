@@ -14,6 +14,8 @@ These project-bound assets were created with the built-in image-generation tool 
 
 The two production-product screenshots for EmpTrakr and Blog Forge remain authentic screenshots. Generated project art is labeled `Concept visual` in the UI.
 
+Dedicated pale-background variants used by the About, Projects, and Contact page rails in light mode are documented in [generated-light-visuals.md](./generated-light-visuals.md). Dark mode continues to use the original navy artwork.
+
 ## Final prompts
 
 ### Full-stack product-system hero
