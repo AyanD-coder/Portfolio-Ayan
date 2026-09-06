@@ -21,6 +21,7 @@ export function AboutPreview({ summary, strengths, detailed = false, showImage =
                   width={500}
                   height={625}
                   quality={90}
+                  sizes="(min-width: 900px) 31rem, calc(100vw - 1.5rem)"
                   className="about-image"
                 />
               </div>

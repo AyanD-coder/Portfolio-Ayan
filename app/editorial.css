@@ -2207,6 +2207,13 @@ body {
   box-shadow: 0 10px 22px color-mix(in srgb, var(--primary) 24%, transparent);
 }
 
+:root.dark .primary-button,
+html[data-theme="dark"] .primary-button,
+:root.dark .primary-button:hover,
+html[data-theme="dark"] .primary-button:hover {
+  color: #372022;
+}
+
 .ghost-button,
 .theme-toggle {
   border-color: var(--border);
@@ -2965,6 +2972,12 @@ html.motion-ready .ai-tools-grid .gentle-section-reveal.is-visible {
   outline-offset: 3px;
 }
 
+.recruiter-contact a:focus-visible,
+.recruiter-contact button:focus-visible {
+  outline: 3px solid var(--contact-accent);
+  outline-offset: 3px;
+}
+
 .project-top h3 a {
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
@@ -3310,5 +3323,53 @@ html.motion-ready .ai-tools-grid .gentle-section-reveal.is-visible {
   .contact-copy-row {
     grid-template-columns: 1fr;
     gap: 0.55rem;
+  }
+
+  .project-detail-meta > div {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
+/* Mobile ergonomics: preserve the visual system while improving touch and overflow behavior. */
+@media (max-width: 719px) {
+  .mobile-menu-overlay {
+    inset: 4.4rem 0 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .mobile-menu {
+    max-height: calc(100dvh - 5.9rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .theme-toggle {
+    height: 2.75rem;
+  }
+
+  .theme-toggle-thumb {
+    top: 0.5rem;
+  }
+
+  .hero-actions .text-link,
+  .contact-copy-button,
+  .footer-links a {
+    min-height: 2.75rem;
+  }
+
+  .contact-copy-button,
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-actions .primary-button,
+  .hero-actions .ghost-button {
+    flex: 1 1 100%;
   }
 }

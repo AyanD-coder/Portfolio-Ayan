@@ -159,6 +159,7 @@ export function Navbar() {
       <div
         className={`mobile-menu-overlay${isOpen ? " is-open" : ""}`}
         aria-hidden={!isOpen}
+        inert={!isOpen}
         onClick={() => setIsOpen(false)}
         role="presentation"
       >

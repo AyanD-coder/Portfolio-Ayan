@@ -40,7 +40,7 @@ The code also uses Vercel's production URL automatically and falls back to the l
 
 - `/sitemap.xml` — canonical page and project URLs
 - `/robots.txt` — search and answer-engine crawler access
-- `/llms.txt` — concise, factual profile and project index
+- `/llms.txt` — concise, factual profile and project index for compatible tools; supplemental, not a Google ranking signal
 - `/manifest.webmanifest` — site identity and application metadata
 
 After deployment, submit `/sitemap.xml` in Google Search Console and Bing Webmaster Tools, then request indexing for the homepage, About page, Projects page, and strongest case studies.

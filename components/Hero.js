@@ -13,7 +13,7 @@ export function Hero() {
           </div>
           <p className="hero-name">{siteData.name}</p>
           <p className="eyebrow">{siteData.role}</p>
-I keep a bag, maybe plug such photo me, so panicia draws down maybe protein drinks, I have sponsor a second by this juice of your          <h1>Full-stack software engineer building production grade products.</h1>
+          <h1>Full-stack software engineer building production web, API, and desktop products.</h1>
           <p className="hero-intro">
             I&apos;m Ayan Dutta, a Kolkata-based Software Engineer at YoForex. I work across React and TypeScript interfaces, Go and FastAPI services, PostgreSQL data, and Electron desktop workflows.
           </p>

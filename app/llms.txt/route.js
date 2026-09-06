@@ -22,7 +22,7 @@ Profile updated: ${siteData.lastUpdatedLabel}
 
 ## Professional profile
 
-Ayan Dutta is a ${siteData.currentTitle} at ${siteData.employer} based in ${siteData.availability.location}. He is a B.Tech Electronics and Communication Engineering graduate who works across frontend interfaces, backend APIs, databases, desktop applications, and AI-assisted product delivery.
+Ayan Dutta is based in ${siteData.availability.location} and works as a ${siteData.currentTitle} at ${siteData.employer}. He is a B.Tech Electronics and Communication Engineering graduate who works across frontend interfaces, backend APIs, databases, desktop applications, and AI-assisted product delivery.
 
 Core technologies: React, TypeScript, Next.js, Go, FastAPI, PostgreSQL, Node.js, Electron, REST APIs, WebSockets, JWT, and responsive web development.
 

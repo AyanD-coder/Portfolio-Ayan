@@ -14,7 +14,7 @@ function HeroLoadingPoster() {
         alt=""
         width={768}
         height={768}
-        sizes="(min-width: 900px) 31rem, 100vw"
+        sizes="(min-width: 900px) 31rem, (max-width: 719px) calc(100vw - 1.5rem), calc(100vw - 2rem)"
         priority
         draggable={false}
       />
