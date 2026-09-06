@@ -3,7 +3,9 @@ import path from "node:path";
 
 const targetNames = process.argv.includes("--all")
   ? [".next", ".next-dev"]
-  : [".next"];
+  : process.argv.includes("--dev")
+    ? [".next-dev"]
+    : [".next"];
 
 try {
   for (const targetName of targetNames) {

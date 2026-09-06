@@ -12,8 +12,6 @@ const themeScript = `
       root.dataset.theme = theme;
       root.classList.toggle("dark", theme === "dark");
       root.style.colorScheme = theme;
-      var themeMeta = document.getElementById("theme-color");
-      if (themeMeta) themeMeta.setAttribute("content", theme === "dark" ? "#070a10" : "#ffffff");
     } catch (error) {
       document.documentElement.dataset.theme = "dark";
       document.documentElement.classList.add("dark");

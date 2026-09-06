@@ -569,8 +569,8 @@ html[data-theme="dark"] .theme-toggle-thumb {
 .hero-canvas-positioner {
   position: relative;
   z-index: 1;
-  width: min(100%, 373px);
-  min-width: 0;
+  width: 100%;
+  max-width: 100%;
   margin-inline: auto;
 }
 
@@ -656,19 +656,15 @@ html[data-theme="dark"] .theme-toggle-thumb {
 }
 
 .project-card,
-.skill-card,
 .timeline-card,
 .achievement-card,
-.ai-tool-card,
 .ai-practice-card {
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 
 .project-card:hover,
-.skill-card:hover,
 .timeline-card:hover,
 .achievement-card:hover,
-.ai-tool-card:hover,
 .ai-practice-card:hover {
   transform: translateY(-4px);
   border-color: var(--border-strong);
@@ -1506,6 +1502,12 @@ html[data-theme="dark"] .theme-toggle-thumb {
 /* Preserve the Spline canvas and hide only its non-canvas watermark UI. */
 .spline-container > *:not(canvas) {
   display: none !important;
+}
+
+.spline-container {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 520px !important;
 }
 
 #logo,

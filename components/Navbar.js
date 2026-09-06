@@ -15,6 +15,8 @@ const navItems = [
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const menuRef = useRef(null);
   const menuToggleRef = useRef(null);
 
@@ -64,6 +66,38 @@ export function Navbar() {
   }, [pathname]);
 
   useEffect(() => {
+    let frameId;
+
+    const updateScrollState = () => {
+      frameId = undefined;
+      const scrollTop = window.scrollY;
+
+      setHasScrolled(scrollTop > 12);
+
+      if (pathname === "/") {
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        setScrollProgress(scrollableHeight > 0 ? Math.min(scrollTop / scrollableHeight, 1) : 0);
+      }
+    };
+
+    const handleScroll = () => {
+      if (!frameId) {
+        frameId = window.requestAnimationFrame(updateScrollState);
+      }
+    };
+
+    updateScrollState();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      if (frameId) window.cancelAnimationFrame(frameId);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
     const desktopQuery = window.matchMedia("(min-width: 720px)");
     const closeOnDesktop = (event) => {
       if (event.matches) setIsOpen(false);
@@ -74,7 +108,14 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="navbar">
+    <header className={`navbar${hasScrolled ? " is-scrolled" : ""}`}>
+      {pathname === "/" ? (
+        <span
+          className="site-scroll-progress"
+          aria-hidden="true"
+          style={{ transform: `scaleX(${scrollProgress})` }}
+        />
+      ) : null}
       <div className="container nav-inner">
         <Link href="/" className="brand" aria-label="Ayan Dutta home">
           <Image className="brand-logo" src="/icon.png" alt="Ayan Dutta Logo" width={64} height={64} priority />

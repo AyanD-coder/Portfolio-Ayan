@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { siteData } from "@/lib/site-data";
-import { InteractiveRobotSpline } from "@/components/InteractiveRobotSpline";
+import { HeroVisual } from "@/components/HeroVisual";
 
 export function Hero() {
   return (
@@ -13,8 +13,10 @@ export function Hero() {
           </div>
           <p className="hero-name">{siteData.name}</p>
           <p className="eyebrow">{siteData.role}</p>
-          <h1>Building practical products from interface to implementation.</h1>
-          <p className="hero-intro">{siteData.tagline}</p>
+I keep a bag, maybe plug such photo me, so panicia draws down maybe protein drinks, I have sponsor a second by this juice of your          <h1>Full-stack software engineer building production grade products.</h1>
+          <p className="hero-intro">
+            I&apos;m Ayan Dutta, a Kolkata-based Software Engineer at YoForex. I work across React and TypeScript interfaces, Go and FastAPI services, PostgreSQL data, and Electron desktop workflows.
+          </p>
           <div className="hero-actions">
             <Link className="primary-button" href="/projects">
               View Projects
@@ -26,13 +28,13 @@ export function Hero() {
               Contact Me
             </Link>
           </div>
-          <div className="hero-role-list" aria-label="Target roles">
+          <ul className="hero-role-list" aria-label="Target roles">
             {siteData.targetRoles.map((role) => (
-              <span className="meta-chip" key={role}>
+              <li className="meta-chip" key={role}>
                 {role}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
           <div className="hero-proof-grid">
             {siteData.stats.map((stat) => (
               <div className="hero-proof-item" key={stat.label}>
@@ -43,25 +45,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero-visual fade-up fade-delay-1">
-          <div className="hero-canvas-positioner">
-            <div className="hero-canvas-shell">
-              <div className="hero-canvas-stage">
-                <InteractiveRobotSpline
-                  scene="https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode"
-                  style={{ width: "100%", height: "100%" }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="hero-visual-note">
-            <span className="visual-note-index">01</span>
-            <div>
-              <strong>Product builder</strong>
-              <p>Web, APIs, desktop workflows, and AI-assisted delivery.</p>
-            </div>
-          </div>
-        </div>
+        <HeroVisual scene="https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode" />
       </div>
     </section>
   );

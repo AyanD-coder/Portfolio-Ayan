@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SectionHeading } from "@/components/SectionHeading";
+import { siteData } from "@/lib/site-data";
 
 export function AboutPreview({ summary, strengths, detailed = false, showImage = false }) {
   return (
@@ -15,8 +16,8 @@ export function AboutPreview({ summary, strengths, detailed = false, showImage =
             <div className="about-profile-card fade-up">
               <div className="about-image-wrapper">
                 <Image
-                  src="/profile.jpg"
-                  alt="Ayan Dutta"
+                  src="/profile-optimized.jpg"
+                  alt="Portrait of Ayan Dutta, full-stack software engineer in Kolkata"
                   width={500}
                   height={625}
                   quality={90}
@@ -24,8 +25,8 @@ export function AboutPreview({ summary, strengths, detailed = false, showImage =
                 />
               </div>
               <div className="about-profile-meta">
-                <strong>Ayan Dutta</strong>
-                <span>Full-Stack Developer · Kolkata</span>
+                <strong>{siteData.name}</strong>
+                <span>{siteData.role} · Kolkata</span>
               </div>
             </div>
           ) : null}

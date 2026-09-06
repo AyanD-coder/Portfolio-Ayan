@@ -1,45 +1,26 @@
 import Image from "next/image";
+import Link from "next/link";
 import { SectionHeading } from "@/components/SectionHeading";
-
-function getProjectLinks(project) {
-  if (project.links?.length) {
-    return project.links;
-  }
-
-  const links = [];
-
-  if (project.demoUrl) {
-    links.push({ label: "Live / Demo", url: project.demoUrl, kind: "secondary" });
-  }
-
-  if (project.repoUrl) {
-    links.push({ label: "GitHub Repo", url: project.repoUrl, kind: "secondary" });
-  }
-
-  return links;
-}
+import { getProjectExternalLinks } from "@/lib/project-service";
 
 function ProjectLinks({ project }) {
-  const links = getProjectLinks(project);
-
-  if (!links.length) {
-    return (
-      <div className="project-links">
-        <span className="chip-link" aria-disabled="true">
-          Project details available on request
-        </span>
-      </div>
-    );
-  }
+  const links = getProjectExternalLinks(project);
 
   return (
     <div className="project-links">
+      <Link
+        className={project.spotlight ? "primary-button" : "chip-link"}
+        href={`/projects/${project.slug}`}
+        aria-label={`Read the ${project.title} case study`}
+      >
+        Read case study
+      </Link>
       {links.map((link) => (
         <a
-          className={link.kind === "primary" ? "primary-button" : "chip-link"}
+          className="chip-link"
           href={link.url}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           key={`${link.label}-${link.url}`}
         >
           {link.label}
@@ -61,12 +42,14 @@ function SpotlightProjectCard({ project, index }) {
         <Image
           src={project.image.src}
           alt={project.image.alt}
-          width={1600}
-          height={1000}
+          width={project.image.width}
+          height={project.image.height}
           sizes="(min-width: 1024px) 52vw, 100vw"
-          priority={index === 0}
           className="project-spotlight-image"
         />
+        {project.image.kind === "concept" ? (
+          <span className="project-row-media-label">Concept visual</span>
+        ) : null}
       </div>
       <div className="project-spotlight-content">
         <div className="project-top">
@@ -75,7 +58,9 @@ function SpotlightProjectCard({ project, index }) {
               <p className="eyebrow">{project.category}</p>
               {badge ? <span className="featured-pill">{badge}</span> : null}
             </div>
-            <h3>{project.title}</h3>
+            <h3>
+              <Link href={`/projects/${project.slug}`}>{project.title}</Link>
+            </h3>
           </div>
           <span className="meta-chip">{project.year}</span>
         </div>
@@ -129,8 +114,8 @@ function StandardProjectCard({ project, index }) {
           <Image
             src={project.image.src}
             alt={project.image.alt}
-            width={1600}
-            height={1000}
+            width={project.image.width}
+            height={project.image.height}
             sizes="(min-width: 900px) 18vw, calc(100vw - 3rem)"
             className="project-row-media-image"
           />
@@ -145,7 +130,9 @@ function StandardProjectCard({ project, index }) {
               <p className="eyebrow">{project.category}</p>
               {badge ? <span className="featured-pill">{badge}</span> : null}
           </div>
-          <h3>{project.title}</h3>
+          <h3>
+            <Link href={`/projects/${project.slug}`}>{project.title}</Link>
+          </h3>
         </div>
         <span className="meta-chip">{project.year}</span>
       </div>

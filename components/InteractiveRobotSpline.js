@@ -1,19 +1,30 @@
 'use client';
 
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
 function HeroLoadingPoster() {
   return (
     <div className="spline-loading-poster" aria-hidden="true">
-      <span className="spline-loading-poster-image" />
+      <Image
+        className="spline-loading-poster-image"
+        src="/site-visuals/robot-loader-light.webp"
+        alt=""
+        width={768}
+        height={768}
+        sizes="(min-width: 900px) 31rem, 100vw"
+        priority
+        draggable={false}
+      />
     </div>
   );
 }
 
 export function InteractiveRobotSpline({ scene, className, style }) {
   const containerRef = useRef(null);
+  const hasActivatedRef = useRef(false);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [sceneReady, setSceneReady] = useState(false);
 
@@ -47,6 +58,11 @@ export function InteractiveRobotSpline({ scene, className, style }) {
     };
 
     const activate = () => {
+      if (hasActivatedRef.current || shouldLoad) {
+        return;
+      }
+
+      hasActivatedRef.current = true;
       cancelScheduledLoad();
       setShouldLoad(true);
     };
@@ -110,6 +126,7 @@ export function InteractiveRobotSpline({ scene, className, style }) {
     <div
       ref={containerRef}
       className={`spline-deferred-shell${sceneReady ? ' is-loaded' : ''}`}
+      aria-hidden="true"
     >
       <HeroLoadingPoster />
       {shouldLoad ? (
@@ -117,9 +134,9 @@ export function InteractiveRobotSpline({ scene, className, style }) {
           <Spline
             scene={scene}
             className={`spline-container ${className || ''}`}
-            style={{ position: 'absolute', inset: 0, ...style }}
-            renderOnDemand
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', ...style }}
             onLoad={() => setSceneReady(true)}
+            onError={() => setSceneReady(false)}
           />
         </Suspense>
       ) : null}

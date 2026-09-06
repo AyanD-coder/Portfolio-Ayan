@@ -9,7 +9,7 @@ function applyTheme(theme) {
   root.style.colorScheme = theme;
   document
     .getElementById("theme-color")
-    ?.setAttribute("content", theme === "dark" ? "#070a10" : "#ffffff");
+    ?.setAttribute("content", theme === "dark" ? "#181315" : "#f8f3ed");
 }
 
 export function ThemeToggle() {
@@ -17,6 +17,7 @@ export function ThemeToggle() {
 
   useEffect(() => {
     const rootTheme = document.documentElement.dataset.theme || "light";
+    applyTheme(rootTheme);
     setTheme(rootTheme);
 
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");

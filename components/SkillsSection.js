@@ -11,7 +11,11 @@ export function SkillsSection({ skills, compact = false }) {
         />
         <div className={`skills-grid ${compact ? "compact" : ""}`}>
           {skills.map((group, index) => (
-            <article className="skill-card fade-up" key={group.title} style={{ animationDelay: `${index * 0.08}s` }}>
+            <article
+              className="skill-card fade-up gentle-section-reveal"
+              key={group.title}
+              style={{ "--reveal-delay": `${index * 0.055}s` }}
+            >
               <span className="skill-index">{String(index + 1).padStart(2, "0")}</span>
               <h3>{group.title}</h3>
               <p>{group.summary}</p>

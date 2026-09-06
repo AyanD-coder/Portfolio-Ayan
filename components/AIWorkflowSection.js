@@ -11,7 +11,11 @@ export function AIWorkflowSection({ workflow }) {
         />
         <div className="ai-tools-grid">
           {workflow.toolGroups.map((group, index) => (
-            <article className="ai-tool-card fade-up" key={group.title} style={{ animationDelay: `${index * 0.08}s` }}>
+            <article
+              className="ai-tool-card fade-up gentle-section-reveal"
+              key={group.title}
+              style={{ "--reveal-delay": `${index * 0.075}s` }}
+            >
               <span className="ai-card-index">{String(index + 1).padStart(2, "0")}</span>
               <h3>{group.title}</h3>
               <div className="ai-tool-list">
@@ -35,7 +39,7 @@ export function AIWorkflowSection({ workflow }) {
           <p className="ai-product-evidence">{workflow.productEvidence}</p>
         ) : null}
         <p className="ai-workflow-note">
-          Vibe coding helps accelerate the first draft; engineering review, testing, and refinement make it ready to ship.
+          AI can accelerate a first implementation; code ownership, review, testing, and refinement make it ready to ship.
         </p>
       </div>
     </section>

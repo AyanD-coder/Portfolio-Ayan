@@ -1,7 +1,14 @@
 import { SectionHeading } from "@/components/SectionHeading";
+import { CopyEmailButton } from "@/components/CopyEmailButton";
 import { siteData } from "@/lib/site-data";
 
 export function ContactSection({ detailed = false }) {
+  const emailHref = `mailto:${siteData.contact.email}?subject=${encodeURIComponent(
+    "Software engineering opportunity",
+  )}&body=${encodeURIComponent(
+    "Hi Ayan,\n\nI found your portfolio and would like to discuss a software engineering opportunity.\n\nRole / company:\nWork arrangement:\nUseful details:\n",
+  )}`;
+
   return (
     <section className="section recruiter-contact" id="contact">
       <div className="container">
@@ -16,24 +23,34 @@ export function ContactSection({ detailed = false }) {
               <span aria-hidden="true" />
               {siteData.availability.status}
             </div>
-            <h3>Ready to contribute to a product-focused engineering team.</h3>
+            <h3>Ready to discuss the right product engineering role.</h3>
             <p>
-              Available for {siteData.availability.workMode.toLowerCase()} roles. I bring production software engineering experience from a permanent role, full-stack product work, and an AI-assisted workflow grounded in validation.
+              I&apos;m currently a Software Engineer at YoForex and open to discussing {siteData.availability.workMode.toLowerCase()} roles. I bring production full-stack experience across React, Go, FastAPI, PostgreSQL, and Electron.
             </p>
             <div className="contact-role-list">
               {siteData.targetRoles.map((role) => (
                 <span className="meta-chip" key={role}>{role}</span>
               ))}
             </div>
-            {detailed ? (
-              <p className="contact-response-note">{siteData.availability.response}</p>
-            ) : null}
+            <div className="contact-primary-actions">
+              <a className="primary-button" href={emailHref}>Email me about a role</a>
+              <a className="ghost-button" href={siteData.cvPath} target="_blank" rel="noopener noreferrer">
+                View resume
+              </a>
+            </div>
+            <p className="contact-response-note">
+              {siteData.availability.response}{detailed ? " · Email or LinkedIn both work." : ""}
+            </p>
           </div>
-          <div className="contact-link-card fade-up fade-delay-1">
-            <a className="contact-link-row" href={`mailto:${siteData.contact.email}`}>
+          <address className="contact-link-card fade-up fade-delay-1">
+            <a className="contact-link-row" href={emailHref}>
               <span>Email</span>
               <strong>{siteData.contact.email}</strong>
             </a>
+            <div className="contact-copy-row">
+              <span>Prefer to paste it?</span>
+              <CopyEmailButton email={siteData.contact.email} />
+            </div>
             <a className="contact-link-row" href={siteData.contact.linkedin} target="_blank" rel="noreferrer">
               <span>LinkedIn</span>
               <strong>Professional profile</strong>
@@ -44,13 +61,13 @@ export function ContactSection({ detailed = false }) {
             </a>
             <a className="contact-link-row" href={siteData.cvPath} download>
               <span>Resume</span>
-              <strong>Download CV</strong>
+              <strong>Download PDF</strong>
             </a>
             <div className="contact-location">
               <span>Based in</span>
               <strong>{siteData.availability.location}</strong>
             </div>
-          </div>
+          </address>
         </div>
       </div>
     </section>
