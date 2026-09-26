@@ -284,7 +284,7 @@ function Contact() {
   );
 }
 
-export function RedesignHome({ projects, config }) {
+export function RedesignHome({ projects }) {
   return (
     <main id="main-content" className={styles.root} data-design="redesign" data-story="static" data-motion="static">
       <Hero />
@@ -295,7 +295,7 @@ export function RedesignHome({ projects, config }) {
       <About />
       <FAQ />
       <Contact />
-      {config.scrollStoryEnabled ? <StoryMotion scrollStoryEnabled={config.scrollStoryEnabled} advancedAnimationEnabled={config.advancedAnimationEnabled} /> : null}
+      <StoryMotion scrollStoryEnabled advancedAnimationEnabled />
     </main>
   );
 }

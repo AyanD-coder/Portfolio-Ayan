@@ -21,16 +21,17 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-## Homepage design modes
+## Homepage design
 
-The current homepage remains the default. Set `DESIGN_MODE=redesign` to preview
-the modern technical homepage, or `DESIGN_MODE=original` to switch back. Restart
-development or rebuild production after changing the setting. Both designs share
-the robot, images, content, links, and existing light/dark theme.
+The modern technical homepage is the permanent homepage. It uses contrasting
+section colors, shared content and media, and the existing light/dark theme.
+Scroll effects adapt to device capabilities and accessibility preferences.
 
-See [the redesign and rollback guide](docs/homepage-redesign.md) for animation
-flags, local preview commands, preservation checks, and verification limitations.
-No push or deployment is authorized without the owner's explicit permission.
+There is no environment-based design switch. Existing `DESIGN_MODE`,
+`SCROLL_STORY_ENABLED`, and `ADVANCED_ANIMATION_ENABLED` values are ignored;
+no environment changes are needed. The original presentation remains in source
+as a reference. See the [homepage guide](docs/homepage-redesign.md) for automatic
+fallbacks, verification, and source-based rollback.
 
 ## Build for production
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Verify SSR preservation after `npm run build` (no server or dependencies needed).
- *   node scripts/verify-design.mjs --mode=original
+ *   node scripts/verify-design.mjs
  *   node scripts/verify-design.mjs --mode=redesign --base-url=http://localhost:3000
  *   node scripts/verify-design.mjs --baseline=tmp/design-baseline
  *
@@ -11,7 +11,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-const options = { mode: "original", baseline: "tmp/design-baseline" };
+const options = { mode: "redesign", baseline: "tmp/design-baseline" };
 for (const argument of process.argv.slice(2)) {
   const match = argument.match(/^--(mode|baseline|base-url)=(.+)$/);
   if (!match) throw new Error(`Unknown option ${argument}. Use --mode=original|redesign, --baseline=PATH, or --base-url=URL.`);
