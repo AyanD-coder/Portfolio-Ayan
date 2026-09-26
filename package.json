@@ -7,7 +7,9 @@
     "dev": "next dev",
     "prebuild": "node scripts/clean-next.mjs",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "node --test tests/*.test.mjs",
+    "verify:design": "node scripts/verify-design.mjs"
   },
   "dependencies": {
     "@splinetool/react-spline": "^4.1.0",

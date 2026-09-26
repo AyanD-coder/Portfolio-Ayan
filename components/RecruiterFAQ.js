@@ -1,34 +1,20 @@
 import { JsonLd } from "@/components/JsonLd";
 import { SectionHeading } from "@/components/SectionHeading";
 import { siteData } from "@/lib/site-data";
-import { getSiteUrl } from "@/lib/site-url";
+import { getRecruiterFaqJsonLd } from "@/lib/recruiter-faq";
+import { homepageContent } from "@/lib/homepage-content";
 
 export function RecruiterFAQ({ pagePath = "/" }) {
-  const siteUrl = getSiteUrl();
-  const pageUrl = new URL(pagePath, `${siteUrl}/`).toString();
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "@id": `${pageUrl}#recruiter-faq`,
-    url: `${pageUrl}#recruiter-faq`,
-    mainEntity: siteData.recruiterFaq.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
+  const faqJsonLd = getRecruiterFaqJsonLd(pagePath);
 
   return (
     <section className="section recruiter-faq" id="recruiter-faq">
       <JsonLd data={faqJsonLd} />
       <div className="container">
         <SectionHeading
-          eyebrow="Recruiter FAQ"
-          title="Quick answers for hiring teams."
-          description="Role fit, production experience, technical strengths, availability, and the fastest way to get in touch."
+          eyebrow={homepageContent.faq.eyebrow}
+          title={homepageContent.faq.title}
+          description={homepageContent.faq.description}
         />
         <div className="recruiter-faq-grid">
           {siteData.recruiterFaq.map((item, index) => (

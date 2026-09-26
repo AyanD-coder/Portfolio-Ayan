@@ -1,13 +1,14 @@
 import { SectionHeading } from "@/components/SectionHeading";
+import { homepageContent } from "@/lib/homepage-content";
 
 export function SkillsSection({ skills, compact = false }) {
   return (
     <section className="section" id="skills">
       <div className="container">
         <SectionHeading
-          eyebrow="Capabilities"
-          title="A full-stack toolkit organized around shipping useful products."
-          description="Core technologies, delivery practices, and evidence from the work behind this portfolio."
+          eyebrow={homepageContent.skills.eyebrow}
+          title={homepageContent.skills.title}
+          description={homepageContent.skills.description}
         />
         <div className={`skills-grid ${compact ? "compact" : ""}`}>
           {skills.map((group, index) => (

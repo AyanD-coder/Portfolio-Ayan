@@ -1,21 +1,19 @@
 import { SectionHeading } from "@/components/SectionHeading";
 import { CopyEmailButton } from "@/components/CopyEmailButton";
 import { siteData } from "@/lib/site-data";
+import { getContactEmailHref } from "@/lib/contact";
+import { homepageContent } from "@/lib/homepage-content";
 
 export function ContactSection({ detailed = false }) {
-  const emailHref = `mailto:${siteData.contact.email}?subject=${encodeURIComponent(
-    "Software engineering opportunity",
-  )}&body=${encodeURIComponent(
-    "Hi Ayan,\n\nI found your portfolio and would like to discuss a software engineering opportunity.\n\nRole / company:\nWork arrangement:\nUseful details:\n",
-  )}`;
+  const emailHref = getContactEmailHref();
 
   return (
     <section className="section recruiter-contact" id="contact">
       <div className="container">
         <SectionHeading
-          eyebrow="Let’s Work Together"
-          title="Looking for a developer who can move from idea to implementation?"
-          description="I’m open to full-stack, frontend, and software engineering opportunities where practical execution matters."
+          eyebrow={homepageContent.contact.eyebrow}
+          title={homepageContent.contact.title}
+          description={homepageContent.contact.description}
         />
         <div className="contact-editorial-grid">
           <div className="contact-pitch fade-up">
@@ -23,9 +21,9 @@ export function ContactSection({ detailed = false }) {
               <span aria-hidden="true" />
               {siteData.availability.status}
             </div>
-            <h3>Ready to discuss the right product engineering role.</h3>
+            <h3>{homepageContent.contact.pitchTitle}</h3>
             <p>
-              I&apos;m currently a Software Engineer at YoForex and open to discussing {siteData.availability.workMode.toLowerCase()} roles. I bring production full-stack experience across React, Go, FastAPI, PostgreSQL, and Electron.
+              {homepageContent.contact.pitchIntro}{siteData.availability.workMode.toLowerCase()}{homepageContent.contact.pitchOutro}
             </p>
             <div className="contact-role-list">
               {siteData.targetRoles.map((role) => (
@@ -33,38 +31,38 @@ export function ContactSection({ detailed = false }) {
               ))}
             </div>
             <div className="contact-primary-actions">
-              <a className="primary-button" href={emailHref}>Email me about a role</a>
+              <a className="primary-button" href={emailHref}>{homepageContent.contact.emailLabel}</a>
               <a className="ghost-button" href={siteData.cvPath} target="_blank" rel="noopener noreferrer">
-                View resume
+                {homepageContent.contact.resumeLabel}
               </a>
             </div>
             <p className="contact-response-note">
-              {siteData.availability.response}{detailed ? " · Email or LinkedIn both work." : ""}
+              {siteData.availability.response}{detailed ? homepageContent.contact.responseSuffix : ""}
             </p>
           </div>
           <address className="contact-link-card fade-up fade-delay-1">
             <a className="contact-link-row" href={emailHref}>
-              <span>Email</span>
+              <span>{homepageContent.contact.emailDetailLabel}</span>
               <strong>{siteData.contact.email}</strong>
             </a>
             <div className="contact-copy-row">
-              <span>Prefer to paste it?</span>
+              <span>{homepageContent.contact.copyPrompt}</span>
               <CopyEmailButton email={siteData.contact.email} />
             </div>
             <a className="contact-link-row" href={siteData.contact.linkedin} target="_blank" rel="noreferrer">
-              <span>LinkedIn</span>
-              <strong>Professional profile</strong>
+              <span>{homepageContent.contact.linkedInLabel}</span>
+              <strong>{homepageContent.contact.linkedInDescription}</strong>
             </a>
             <a className="contact-link-row" href={siteData.contact.gitHub} target="_blank" rel="noreferrer">
-              <span>GitHub</span>
-              <strong>Code and repositories</strong>
+              <span>{homepageContent.contact.gitHubLabel}</span>
+              <strong>{homepageContent.contact.gitHubDescription}</strong>
             </a>
             <a className="contact-link-row" href={siteData.cvPath} download>
-              <span>Resume</span>
-              <strong>Download PDF</strong>
+              <span>{homepageContent.contact.resumeDetailLabel}</span>
+              <strong>{homepageContent.contact.downloadLabel}</strong>
             </a>
             <div className="contact-location">
-              <span>Based in</span>
+              <span>{homepageContent.contact.locationLabel}</span>
               <strong>{siteData.availability.location}</strong>
             </div>
           </address>

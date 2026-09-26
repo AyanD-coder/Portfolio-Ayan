@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { siteData } from "@/lib/site-data";
 import { HeroVisual } from "@/components/HeroVisual";
+import { homepageContent } from "@/lib/homepage-content";
 
 export function Hero() {
   return (
@@ -13,19 +14,19 @@ export function Hero() {
           </div>
           <p className="hero-name">{siteData.name}</p>
           <p className="eyebrow">{siteData.role}</p>
-          <h1>Full-stack software engineer building production web, API, and desktop products.</h1>
+          <h1>{homepageContent.hero.title}</h1>
           <p className="hero-intro">
-            I&apos;m Ayan Dutta, a Kolkata-based Software Engineer at YoForex. I work across React and TypeScript interfaces, Go and FastAPI services, PostgreSQL data, and Electron desktop workflows.
+            {homepageContent.hero.intro}
           </p>
           <div className="hero-actions">
             <Link className="primary-button" href="/projects">
-              View Projects
+              {homepageContent.hero.projectsLabel}
             </Link>
             <a className="ghost-button" href={siteData.cvPath} download>
-              Download CV
+              {homepageContent.hero.cvLabel}
             </a>
             <Link className="text-link" href="/contact">
-              Contact Me
+              {homepageContent.hero.contactLabel}
             </Link>
           </div>
           <ul className="hero-role-list" aria-label="Target roles">
@@ -45,7 +46,7 @@ export function Hero() {
           </div>
         </div>
 
-        <HeroVisual scene="https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode" />
+        <HeroVisual scene={homepageContent.hero.scene} />
       </div>
     </section>
   );

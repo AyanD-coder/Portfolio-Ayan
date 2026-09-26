@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/SectionHeading";
 import { getProjectExternalLinks } from "@/lib/project-service";
+import { homepageContent } from "@/lib/homepage-content";
 
 function ProjectLinks({ project }) {
   const links = getProjectExternalLinks(project);
@@ -13,7 +14,7 @@ function ProjectLinks({ project }) {
         href={`/projects/${project.slug}`}
         aria-label={`Read the ${project.title} case study`}
       >
-        Read case study
+        {homepageContent.projects.caseStudyLabel}
       </Link>
       {links.map((link) => (
         <a
@@ -31,7 +32,7 @@ function ProjectLinks({ project }) {
 }
 
 function SpotlightProjectCard({ project, index }) {
-  const badge = project.badge || (project.featured ? "Featured project" : null);
+  const badge = project.badge || (project.featured ? homepageContent.projects.featuredLabel : null);
 
   return (
     <article
@@ -48,7 +49,7 @@ function SpotlightProjectCard({ project, index }) {
           className="project-spotlight-image"
         />
         {project.image.kind === "concept" ? (
-          <span className="project-row-media-label">Concept visual</span>
+          <span className="project-row-media-label">{homepageContent.projects.conceptLabel}</span>
         ) : null}
       </div>
       <div className="project-spotlight-content">
@@ -101,7 +102,7 @@ function SpotlightProjectCard({ project, index }) {
 }
 
 function StandardProjectCard({ project, index }) {
-  const badge = project.badge || (project.featured ? "Featured project" : null);
+  const badge = project.badge || (project.featured ? homepageContent.projects.featuredLabel : null);
   const hasMedia = Boolean(project.image?.src);
 
   return (
@@ -120,7 +121,7 @@ function StandardProjectCard({ project, index }) {
             className="project-row-media-image"
           />
           {project.image.kind === "concept" ? (
-            <span className="project-row-media-label">Concept visual</span>
+            <span className="project-row-media-label">{homepageContent.projects.conceptLabel}</span>
           ) : null}
         </div>
       ) : null}
@@ -163,9 +164,9 @@ export function ProjectGrid({ projects, showAll = false }) {
     <section className="section alt" id="projects">
       <div className="container">
         <SectionHeading
-          eyebrow="Selected Work"
-          title={showAll ? "Projects across product, platform, and systems work." : "Proof of work, not just a list of technologies."}
-          description="Each project connects the implementation choices to a real workflow, technical challenge, or product outcome."
+          eyebrow={homepageContent.projects.eyebrow}
+          title={showAll ? homepageContent.projects.allTitle : homepageContent.projects.title}
+          description={homepageContent.projects.description}
         />
         <div className="projects-grid">
           {projects.map((project, index) => (

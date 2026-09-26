@@ -1,11 +1,12 @@
 import { SectionHeading } from "@/components/SectionHeading";
+import { homepageContent } from "@/lib/homepage-content";
 
 export function AIWorkflowSection({ workflow }) {
   return (
     <section className="section ai-workflow-section" id="ai-workflow">
       <div className="container">
         <SectionHeading
-          eyebrow="AI Workflow"
+          eyebrow={homepageContent.workflow.eyebrow}
           title={workflow.title}
           description={workflow.description}
         />
@@ -39,7 +40,7 @@ export function AIWorkflowSection({ workflow }) {
           <p className="ai-product-evidence">{workflow.productEvidence}</p>
         ) : null}
         <p className="ai-workflow-note">
-          AI can accelerate a first implementation; code ownership, review, testing, and refinement make it ready to ship.
+          {homepageContent.workflow.note}
         </p>
       </div>
     </section>

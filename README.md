@@ -21,6 +21,17 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Homepage design modes
+
+The current homepage remains the default. Set `DESIGN_MODE=redesign` to preview
+the modern technical homepage, or `DESIGN_MODE=original` to switch back. Restart
+development or rebuild production after changing the setting. Both designs share
+the robot, images, content, links, and existing light/dark theme.
+
+See [the redesign and rollback guide](docs/homepage-redesign.md) for animation
+flags, local preview commands, preservation checks, and verification limitations.
+No push or deployment is authorized without the owner's explicit permission.
+
 ## Build for production
 
 ```bash

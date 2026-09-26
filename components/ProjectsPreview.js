@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProjectGrid } from "@/components/ProjectGrid";
+import { homepageContent } from "@/lib/homepage-content";
 
 export function ProjectsPreview({ projects }) {
   return (
@@ -7,7 +8,7 @@ export function ProjectsPreview({ projects }) {
       <ProjectGrid projects={projects} />
       <div className="container projects-preview-action">
         <Link href="/projects" className="ghost-button">
-          View all projects
+          {homepageContent.projects.allProjectsLabel}
         </Link>
       </div>
     </>
